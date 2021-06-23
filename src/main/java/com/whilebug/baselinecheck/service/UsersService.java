@@ -5,10 +5,10 @@ import com.whilebug.baselinecheck.pojo.Users;
 import java.util.Map;
 
 /**
- * (Users)表服务接口类
+ * 用户数据表(Users)表服务接口类
  *
  * @author makejava
- * @since 2021-06-23 15:32:30
+ * @since 2021-06-23 16:54:40
  * @version 1.0
  */
 public interface UsersService {
@@ -30,10 +30,10 @@ public interface UsersService {
     /**
      * 通过ID查询单条数据
      *
-     * @param userId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    Map<String, Object> deleteById(Integer userId);
+    Map<String, Object> deleteById(Integer id);
 
     /**
      * 查询分页数据
@@ -63,8 +63,8 @@ public interface UsersService {
     /**
      * 通过主键删除数据
      *
-     * @param userId 主键
+     * @param id 主键
      * @return 是否成功
      */
-    Map<String, Object> deleteById(String userId);
+    Map<String, Object> deleteById(String id);
 }

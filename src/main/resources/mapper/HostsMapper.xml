@@ -3,7 +3,7 @@
 <mapper namespace="com.whilebug.baselinecheck.mapper.HostsMapper">
 
     <resultMap type="com.whilebug.baselinecheck.pojo.Hosts" id="HostsMap">
-        <result property="hostId" column="host_id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="hostName" column="host_name" jdbcType="VARCHAR"/>
         <result property="hostIp" column="host_ip" jdbcType="VARCHAR"/>
         <result property="hostMac" column="host_mac" jdbcType="VARCHAR"/>
@@ -17,7 +17,7 @@
     </resultMap>
     
     <sql id="Beas_Column_List">
-        host_id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id        
+        id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id        
     </sql>
 
     <!--查询所有主键和名称-->
@@ -64,7 +64,7 @@
         select
             <include refid="Beas_Column_List"/>
         from baseline.hosts
-        where host_id = #{hostId}
+        where id = #{id}
     </select>
     
     <!--根据条件查询当前表的满足条件的个数-->
@@ -94,8 +94,8 @@
 
     <!--新增所有列-->
     <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Hosts">
-        insert into baseline.hosts(host_id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id)
-        values (#{hostId}, #{hostName}, #{hostIp}, #{hostMac}, #{hostUserName}, #{hostUserPassword}, #{hostUserPort}, #{hostUserProtocol}, #{createTime}, #{lastUpdateTime}, #{userId})
+        insert into baseline.hosts(id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id)
+        values (#{id}, #{hostName}, #{hostIp}, #{hostMac}, #{hostUserName}, #{hostUserPassword}, #{hostUserPort}, #{hostUserProtocol}, #{createTime}, #{lastUpdateTime}, #{userId})
     </insert>
 
     <!--通过主键修改数据-->
@@ -133,12 +133,12 @@
                 user_id = #{userId},
             </if>
         </set>
-        where host_id = #{hostId}
+        where id = #{id}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from baseline.hosts where host_id = #{hostId}
+        delete from baseline.hosts where id = #{id}
     </delete>
 
 </mapper>

@@ -9,15 +9,15 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * (Host2task)表控制层
+ * 任务task与主机host之间的对应关系(Host2task)表控制层
  *
  * @author makejava
- * @since 2021-06-23 15:32:01
+ * @since 2021-06-23 16:54:23
  * @version 1.0
  */
 @RestController
 @RequestMapping("/host2task")
-@Api(value = "(Host2task)管理",tags = "(Host2task)管理接口API")
+@Api(value = "任务task与主机host之间的对应关系(Host2task)管理",tags = "任务task与主机host之间的对应关系(Host2task)管理接口API")
 @ApiResponses({
         @ApiResponse(code=400,message="请求参数不完整或者错误"),
         @ApiResponse(code=404,message="找不到页面"),

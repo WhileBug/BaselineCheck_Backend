@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * (Hosts)表服务实现类
+ * 主机数据表(Hosts)表服务实现类
  *
  * @author makejava
- * @since 2021-06-23 15:32:11
+ * @since 2021-06-23 16:54:29
  * @version 1.0
  */
 @Service("hostsService")
@@ -50,15 +50,15 @@ public class HostsServiceImpl {
     /**
      * 通过ID查询单条数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    public Map<String, Object> selectById(Integer hostId) {
+    public Map<String, Object> selectById(Integer id) {
         Map<String, Object> map = new HashMap<>();
         // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("code", 200);
         map.put("msg", "查询成功");
-        map.put("obj", this.hostsMapper.selectById(hostId));
+        map.put("obj", this.hostsMapper.selectById(id));
         return map;
     }
 
@@ -118,11 +118,11 @@ public class HostsServiceImpl {
     /**
      * 通过主键删除数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 是否成功
      */
-    public Map<String, Object> deleteById(String hostId) {
-        this.hostsMapper.deleteById(hostId);
+    public Map<String, Object> deleteById(String id) {
+        this.hostsMapper.deleteById(id);
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("msg", "删除成功");

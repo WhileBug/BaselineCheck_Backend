@@ -6,56 +6,78 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * (Hosts)实体类
+ * 主机数据表(Hosts)实体类
  *
  * @author makejava
- * @since 2021-06-23 15:32:11
+ * @since 2021-06-23 16:54:30
  * @version 1.0
  */
-@ApiModel(value = "Hosts",description = "$tableInfo.comment")
+@ApiModel(value = "Hosts",description = "主机数据表")
 public class Hosts implements Serializable {
-    private static final long serialVersionUID = -28514023216286743L;
-    
-	@ApiModelProperty(name = "hostId",notes = "${column.comment}",dataType = "Integer",required = true)
-    private Integer hostId;
-    
-	@ApiModelProperty(name = "hostName",notes = "${column.comment}",dataType = "String",required = true)
+    private static final long serialVersionUID = -20796224218000932L;
+    /**
+    * 主机host的主键host_id
+    */
+	@ApiModelProperty(name = "id",notes = "主机host的主键host_id",dataType = "Integer",required = true)
+    private Integer id;
+    /**
+    * 主机host的主机名host_name
+    */
+	@ApiModelProperty(name = "hostName",notes = "主机host的主机名host_name",dataType = "String",required = true)
     private String hostName;
-    
-	@ApiModelProperty(name = "hostIp",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的ip地址
+    */
+	@ApiModelProperty(name = "hostIp",notes = "主机host的ip地址",dataType = "String",required = true)
     private String hostIp;
-    
-	@ApiModelProperty(name = "hostMac",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的mac地址host_mac
+    */
+	@ApiModelProperty(name = "hostMac",notes = "主机host的mac地址host_mac",dataType = "String",required = true)
     private String hostMac;
-    
-	@ApiModelProperty(name = "hostUserName",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的用户名host_user_name，一般为root
+    */
+	@ApiModelProperty(name = "hostUserName",notes = "主机host的用户名host_user_name，一般为root",dataType = "String",required = true)
     private String hostUserName;
-    
-	@ApiModelProperty(name = "hostUserPassword",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的用户的密码host_user_password
+    */
+	@ApiModelProperty(name = "hostUserPassword",notes = "主机host的用户的密码host_user_password",dataType = "String",required = true)
     private String hostUserPassword;
-    
-	@ApiModelProperty(name = "hostUserPort",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的打开端口host_user_protocol
+    */
+	@ApiModelProperty(name = "hostUserPort",notes = "主机host的打开端口host_user_protocol",dataType = "String",required = true)
     private String hostUserPort;
-    
-	@ApiModelProperty(name = "hostUserProtocol",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 主机host的协议host_user_protocol
+    */
+	@ApiModelProperty(name = "hostUserProtocol",notes = "主机host的协议host_user_protocol",dataType = "String",required = true)
     private String hostUserProtocol;
-    
-	@ApiModelProperty(name = "createTime",notes = "${column.comment}",dataType = "Date",required = true)
+    /**
+    * 主机host的创建时间create_time
+    */
+	@ApiModelProperty(name = "createTime",notes = "主机host的创建时间create_time",dataType = "Date",required = true)
     private Date createTime;
-    
-	@ApiModelProperty(name = "lastUpdateTime",notes = "${column.comment}",dataType = "Date",required = true)
+    /**
+    * 主机host的最后更新时间last_update_time
+    */
+	@ApiModelProperty(name = "lastUpdateTime",notes = "主机host的最后更新时间last_update_time",dataType = "Date",required = true)
     private Date lastUpdateTime;
-    
-	@ApiModelProperty(name = "userId",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 主机host的拥有者id，user_id，同时是users数据表的主键user_id
+    */
+	@ApiModelProperty(name = "userId",notes = "主机host的拥有者id，user_id，同时是users数据表的主键user_id",dataType = "Integer",required = true)
     private Integer userId;
 
         
-    public Integer getHostId() {
-        return hostId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setHostId(Integer hostId) {
-        this.hostId = hostId;
+    public void setId(Integer id) {
+        this.id = id;
     }
         
     public String getHostName() {

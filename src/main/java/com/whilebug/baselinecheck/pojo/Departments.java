@@ -5,35 +5,43 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * (Departments)实体类
+ * 部门数据表(Departments)实体类
  *
  * @author makejava
- * @since 2021-06-23 15:18:11
+ * @since 2021-06-23 16:54:17
  * @version 1.0
  */
-@ApiModel(value = "Departments",description = "$tableInfo.comment")
+@ApiModel(value = "Departments",description = "部门数据表")
 public class Departments implements Serializable {
-    private static final long serialVersionUID = 494775256790458493L;
-    
-	@ApiModelProperty(name = "departmentId",notes = "${column.comment}",dataType = "Integer",required = true)
-    private Integer departmentId;
-    
-	@ApiModelProperty(name = "departmentName",notes = "${column.comment}",dataType = "String",required = true)
+    private static final long serialVersionUID = -85324857520485149L;
+    /**
+    * 部门的id，是部门表的主键
+    */
+	@ApiModelProperty(name = "id",notes = "部门的id，是部门表的主键",dataType = "Integer",required = true)
+    private Integer id;
+    /**
+    * 部门名称
+    */
+	@ApiModelProperty(name = "departmentName",notes = "部门名称",dataType = "String",required = true)
     private String departmentName;
-    
-	@ApiModelProperty(name = "description",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 部门的描述
+    */
+	@ApiModelProperty(name = "description",notes = "部门的描述",dataType = "String",required = true)
     private String description;
-    
-	@ApiModelProperty(name = "leaderId",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 部门领导人的user_id，与users表中的主键user_id对应
+    */
+	@ApiModelProperty(name = "leaderId",notes = "部门领导人的user_id，与users表中的主键user_id对应",dataType = "Integer",required = true)
     private Integer leaderId;
 
         
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setId(Integer id) {
+        this.id = id;
     }
         
     public String getDepartmentName() {

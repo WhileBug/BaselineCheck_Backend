@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * (Host2task)表服务实现类
+ * 任务task与主机host之间的对应关系(Host2task)表服务实现类
  *
  * @author makejava
- * @since 2021-06-23 15:32:01
+ * @since 2021-06-23 16:54:23
  * @version 1.0
  */
 @Service("host2taskService")
