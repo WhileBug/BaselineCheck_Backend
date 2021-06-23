@@ -68,7 +68,7 @@ public class Host2taskController {
     @RequestMapping(value = "/deleteByTaskId", method = RequestMethod.POST)
     @ApiOperation(value = "根据一个主键删除一条**记录的接口",notes = "根据一个主键删除一条**记录的接口",httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "taskId",value = "主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> deleteById(@RequestParam("id") String id) {
         return this.host2taskServiceImpl.deleteById(id);
