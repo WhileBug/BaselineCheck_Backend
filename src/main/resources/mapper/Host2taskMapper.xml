@@ -72,4 +72,11 @@
         delete from baseline.host2task where task_id = #{taskId}
     </delete>
 
+    <!--查询单个-->
+    <select id="selectByHostId" resultMap="Host2taskMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.host2task
+        where host_id = #{hostId}
+    </select>
 </mapper>

@@ -141,4 +141,12 @@
         delete from baseline.users where id = #{id}
     </delete>
 
+
+    <!--根据部门号查询单个-->
+    <select id="selectByDepartmentId" resultMap="UsersMap">
+        select
+        *<!--<include refid="Beas_Column_List"/>-->
+        from baseline.users
+        where department_id = #{departmentId}
+    </select>
 </mapper>

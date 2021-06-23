@@ -66,4 +66,11 @@ public interface HostsMapper {
      */
     int deleteById(@Param("id") String id);
 
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param userId 主键
+     * @return 实例对象
+     */
+    List<Hosts> selectByUserId(@Param("userId") Integer userId);
 }

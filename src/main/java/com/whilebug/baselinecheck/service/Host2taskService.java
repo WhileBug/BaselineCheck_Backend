@@ -33,7 +33,7 @@ public interface Host2taskService {
      * @param taskId 主键
      * @return 实例对象
      */
-    Map<String, Object> deleteById(Integer taskId);
+    Map<String, Object> selectById(Integer taskId);
 
     /**
      * 查询分页数据
@@ -67,4 +67,12 @@ public interface Host2taskService {
      * @return 是否成功
      */
     Map<String, Object> deleteById(String taskId);
+
+    /**
+     * 通过hostID查询单条数据
+     *
+     * @param hostId 主键
+     * @return 实例对象
+     */
+    Map<String, Object> selectByHostId(Integer hostId);
 }

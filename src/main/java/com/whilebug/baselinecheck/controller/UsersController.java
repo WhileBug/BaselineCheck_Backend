@@ -110,4 +110,16 @@ public class UsersController {
         return this.usersServiceImpl.insert(users);
     }
 
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param departmentId 主键
+     * @return 实例对象
+     */
+    @RequestMapping(value = "/selectByDepartmentId", method = RequestMethod.GET)
+    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    public Map<String, Object> selectByDepartmentId(Integer departmentId) {
+        return this.usersServiceImpl.selectByDepartmentId(departmentId);
+    }
 }

@@ -66,4 +66,11 @@ public interface UsersMapper {
      */
     int deleteById(@Param("id") String id);
 
+    /**
+     * 通过部门号departmentID查询单条数据
+     *
+     * @param departmentId 主键
+     * @return 实例对象
+     */
+    List<Users> selectByDepartmentId(@Param("departmentId") Integer departmentId);
 }
