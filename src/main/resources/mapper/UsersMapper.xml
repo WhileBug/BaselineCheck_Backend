@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whilebug.baselinecheck.mapper.UsersMapper">
+
+    <resultMap type="com.whilebug.baselinecheck.pojo.Users" id="UsersMap">
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userPasswrod" column="user_passwrod" jdbcType="VARCHAR"/>
+        <result property="userStatus" column="user_status" jdbcType="INTEGER"/>
+        <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+        <result property="userEmail" column="user_email" jdbcType="VARCHAR"/>
+        <result property="userImgAddr" column="user_img_addr" jdbcType="VARCHAR"/>
+        <result property="lastLoginTime" column="last_login_time" jdbcType="TIMESTAMP"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="userAuth" column="user_auth" jdbcType="INTEGER"/>
+        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="Beas_Column_List">
+        user_id, user_name, user_passwrod, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id        
+    </sql>
+
+    <!--查询所有主键和名称-->
+    <select id="selectAll" resultMap="UsersMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.users
+        <where>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userPasswrod != null and userPasswrod != ''">
+                user_passwrod = #{userPasswrod},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="userImgAddr != null and userImgAddr != ''">
+                user_img_addr = #{userImgAddr},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime},
+            </if>
+            <if test="userAuth != null">
+                user_auth = #{userAuth},
+            </if>
+            <if test="departmentId != null">
+                department_id = #{departmentId},
+            </if>
+        </where>
+    </select>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="UsersMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.users
+        where user_id = #{userId}
+    </select>
+    
+    <!--根据条件查询当前表的满足条件的个数-->
+    <select id="selectForCount" resultType="int">
+        select
+          count(id)
+        from baseline.users
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectForPage" resultMap="UsersMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.users
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+        limit #{index},10;
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Users">
+        insert into baseline.users(user_id, user_name, user_passwrod, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id)
+        values (#{userId}, #{userName}, #{userPasswrod}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById" parameterType="com.whilebug.baselinecheck.pojo.Users">
+        update baseline.users
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userPasswrod != null and userPasswrod != ''">
+                user_passwrod = #{userPasswrod},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="userImgAddr != null and userImgAddr != ''">
+                user_img_addr = #{userImgAddr},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime},
+            </if>
+            <if test="userAuth != null">
+                user_auth = #{userAuth},
+            </if>
+            <if test="departmentId != null">
+                department_id = #{departmentId},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from baseline.users where user_id = #{userId}
+    </delete>
+
+</mapper>

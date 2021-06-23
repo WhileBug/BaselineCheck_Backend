@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whilebug.baselinecheck.mapper.TasksMapper">
+
+    <resultMap type="com.whilebug.baselinecheck.pojo.Tasks" id="TasksMap">
+        <result property="taskId" column="task_id" jdbcType="INTEGER"/>
+        <result property="taskName" column="task_name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="taskUserId" column="task_user_id" jdbcType="INTEGER"/>
+        <result property="baselineCheck" column="baseline_check" jdbcType="INTEGER"/>
+        <result property="systemInfo" column="system_info" jdbcType="INTEGER"/>
+        <result property="autorun" column="autorun" jdbcType="INTEGER"/>
+        <result property="patch" column="patch" jdbcType="INTEGER"/>
+        <result property="ports" column="ports" jdbcType="INTEGER"/>
+        <result property="softwareInfo" column="software_info" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="Beas_Column_List">
+        task_id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info        
+    </sql>
+
+    <!--查询所有主键和名称-->
+    <select id="selectAll" resultMap="TasksMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.tasks
+        <where>
+            <if test="taskName != null and taskName != ''">
+                task_name = #{taskName},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="taskUserId != null">
+                task_user_id = #{taskUserId},
+            </if>
+            <if test="baselineCheck != null">
+                baseline_check = #{baselineCheck},
+            </if>
+            <if test="systemInfo != null">
+                system_info = #{systemInfo},
+            </if>
+            <if test="autorun != null">
+                autorun = #{autorun},
+            </if>
+            <if test="patch != null">
+                patch = #{patch},
+            </if>
+            <if test="ports != null">
+                ports = #{ports},
+            </if>
+            <if test="softwareInfo != null">
+                software_info = #{softwareInfo},
+            </if>
+        </where>
+    </select>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="TasksMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.tasks
+        where task_id = #{taskId}
+    </select>
+    
+    <!--根据条件查询当前表的满足条件的个数-->
+    <select id="selectForCount" resultType="int">
+        select
+          count(id)
+        from baseline.tasks
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectForPage" resultMap="TasksMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.tasks
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+        limit #{index},10;
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Tasks">
+        insert into baseline.tasks(task_id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info)
+        values (#{taskId}, #{taskName}, #{description}, #{taskUserId}, #{baselineCheck}, #{systemInfo}, #{autorun}, #{patch}, #{ports}, #{softwareInfo})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById" parameterType="com.whilebug.baselinecheck.pojo.Tasks">
+        update baseline.tasks
+        <set>
+            <if test="taskName != null and taskName != ''">
+                task_name = #{taskName},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="taskUserId != null">
+                task_user_id = #{taskUserId},
+            </if>
+            <if test="baselineCheck != null">
+                baseline_check = #{baselineCheck},
+            </if>
+            <if test="systemInfo != null">
+                system_info = #{systemInfo},
+            </if>
+            <if test="autorun != null">
+                autorun = #{autorun},
+            </if>
+            <if test="patch != null">
+                patch = #{patch},
+            </if>
+            <if test="ports != null">
+                ports = #{ports},
+            </if>
+            <if test="softwareInfo != null">
+                software_info = #{softwareInfo},
+            </if>
+        </set>
+        where task_id = #{taskId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from baseline.tasks where task_id = #{taskId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whilebug.baselinecheck.mapper.HostsMapper">
+
+    <resultMap type="com.whilebug.baselinecheck.pojo.Hosts" id="HostsMap">
+        <result property="hostId" column="host_id" jdbcType="INTEGER"/>
+        <result property="hostName" column="host_name" jdbcType="VARCHAR"/>
+        <result property="hostIp" column="host_ip" jdbcType="VARCHAR"/>
+        <result property="hostMac" column="host_mac" jdbcType="VARCHAR"/>
+        <result property="hostUserName" column="host_user_name" jdbcType="VARCHAR"/>
+        <result property="hostUserPassword" column="host_user_password" jdbcType="VARCHAR"/>
+        <result property="hostUserPort" column="host_user_port" jdbcType="VARCHAR"/>
+        <result property="hostUserProtocol" column="host_user_protocol" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="lastUpdateTime" column="last_update_time" jdbcType="TIMESTAMP"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="Beas_Column_List">
+        host_id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id        
+    </sql>
+
+    <!--查询所有主键和名称-->
+    <select id="selectAll" resultMap="HostsMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.hosts
+        <where>
+            <if test="hostName != null and hostName != ''">
+                host_name = #{hostName},
+            </if>
+            <if test="hostIp != null and hostIp != ''">
+                host_ip = #{hostIp},
+            </if>
+            <if test="hostMac != null and hostMac != ''">
+                host_mac = #{hostMac},
+            </if>
+            <if test="hostUserName != null and hostUserName != ''">
+                host_user_name = #{hostUserName},
+            </if>
+            <if test="hostUserPassword != null and hostUserPassword != ''">
+                host_user_password = #{hostUserPassword},
+            </if>
+            <if test="hostUserPort != null and hostUserPort != ''">
+                host_user_port = #{hostUserPort},
+            </if>
+            <if test="hostUserProtocol != null and hostUserProtocol != ''">
+                host_user_protocol = #{hostUserProtocol},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+        </where>
+    </select>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="HostsMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.hosts
+        where host_id = #{hostId}
+    </select>
+    
+    <!--根据条件查询当前表的满足条件的个数-->
+    <select id="selectForCount" resultType="int">
+        select
+          count(id)
+        from baseline.hosts
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectForPage" resultMap="HostsMap">
+        select
+            <include refid="Beas_Column_List"/>
+        from baseline.hosts
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+        limit #{index},10;
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Hosts">
+        insert into baseline.hosts(host_id, host_name, host_ip, host_mac, host_user_name, host_user_password, host_user_port, host_user_protocol, create_time, last_update_time, user_id)
+        values (#{hostId}, #{hostName}, #{hostIp}, #{hostMac}, #{hostUserName}, #{hostUserPassword}, #{hostUserPort}, #{hostUserProtocol}, #{createTime}, #{lastUpdateTime}, #{userId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById" parameterType="com.whilebug.baselinecheck.pojo.Hosts">
+        update baseline.hosts
+        <set>
+            <if test="hostName != null and hostName != ''">
+                host_name = #{hostName},
+            </if>
+            <if test="hostIp != null and hostIp != ''">
+                host_ip = #{hostIp},
+            </if>
+            <if test="hostMac != null and hostMac != ''">
+                host_mac = #{hostMac},
+            </if>
+            <if test="hostUserName != null and hostUserName != ''">
+                host_user_name = #{hostUserName},
+            </if>
+            <if test="hostUserPassword != null and hostUserPassword != ''">
+                host_user_password = #{hostUserPassword},
+            </if>
+            <if test="hostUserPort != null and hostUserPort != ''">
+                host_user_port = #{hostUserPort},
+            </if>
+            <if test="hostUserProtocol != null and hostUserProtocol != ''">
+                host_user_protocol = #{hostUserProtocol},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+        </set>
+        where host_id = #{hostId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from baseline.hosts where host_id = #{hostId}
+    </delete>
+
+</mapper>
