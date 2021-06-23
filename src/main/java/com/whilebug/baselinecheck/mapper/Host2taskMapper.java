@@ -25,7 +25,7 @@ public interface Host2taskMapper {
      * @param taskId 主键
      * @return 实例对象
      */
-    Host2task selectById(@Param("taskId") Integer taskId);
+    List<Host2task> selectById(@Param("taskId") Integer taskId);
 
     /**
      * 根据模糊条件查询总个数
