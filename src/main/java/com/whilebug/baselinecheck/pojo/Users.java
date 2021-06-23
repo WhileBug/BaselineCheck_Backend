@@ -15,7 +15,12 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "Users",description = "用户数据表")
 public class Users implements Serializable {
     private static final long serialVersionUID = -82001230880895871L;
-    
+
+    /**
+     * 无参构造器
+     */
+    public Users() {
+    }
 	@ApiModelProperty(name = "id",notes = "${column.comment}",dataType = "Integer",required = true)
     private Integer id;
     /**
@@ -23,6 +28,7 @@ public class Users implements Serializable {
     */
 	@ApiModelProperty(name = "userPasswrod",notes = "密码",dataType = "String",required = true)
     private String userPasswrod;
+
     /**
     * 用户名
     */

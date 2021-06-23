@@ -14,6 +14,22 @@ import java.util.List;
 public interface UsersMapper {
 
     /**
+     * 通过ID查询单条数据
+     *
+     * @param username 主键
+     * @return 实例对象
+     */
+    Users getUser(@Param("username") String username);
+
+    /**
+     * 注册用户
+     *
+     * @param user 实例对象
+     * @return 实例对象
+     */
+    void registerUser(Users user);
+
+    /**
      * 查询所有数据
      * @return  返回所有数据
      */

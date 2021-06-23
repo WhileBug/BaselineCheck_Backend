@@ -4,6 +4,7 @@ import com.whilebug.baselinecheck.pojo.Users;
 import com.whilebug.baselinecheck.mapper.UsersMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,40 @@ import java.util.Map;
 public class UsersServiceImpl {
     @Resource
     private UsersMapper usersMapper;
+
+    /**
+     * 根据用户名得到user
+     *
+     * @param username 查询条件
+     * @return 返回查询到的总个数
+     */
+    public Users getUser(String username) { ;
+        return  usersMapper.getUser(username);
+    }
+    /**
+     * 注册用户
+     *
+     * @param username 账户号
+     * @param md5 密码的md5
+     * @return 返回查询到的总个数
+     */
+    public Map<String, Object> registerUser(String username, String md5) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            Users newUser = new Users();
+            newUser.setUserName(username);
+            newUser.setUserPasswrod(md5);
+            newUser.setRegisterTime(new Timestamp(System.currentTimeMillis()));
+
+            usersMapper.registerUser(newUser);
+            map.put("code", 200);
+            map.put("msg", "注册成功");
+        } catch (Exception e) {
+            map.put("code", 500);
+            map.put("msg", e.getMessage());
+        }
+        return map;
+    }
 
     /**
      * 根据模糊条件查询总个数
@@ -143,4 +178,5 @@ public class UsersServiceImpl {
         map.put("obj", this.usersMapper.selectByDepartmentId(departmentId));
         return map;
     }
+
 }

@@ -19,6 +19,24 @@
     <sql id="Beas_Column_List">
         id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id        
     </sql>
+    <!--通过名字查询得到用户-->
+    <select id="getUser" resultMap="UsersMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.users
+        <where>
+            <if test="username != null and username != ''">
+                user_name = #{username}
+            </if>
+        </where>
+    </select>
+
+    <!--注册用户-->
+
+    <insert id="registerUser" parameterType="com.whilebug.baselinecheck.pojo.Users">
+        insert into baseline.users(id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id)
+        values (#{id}, #{userPasswrod}, #{userName}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId})
+    </insert>
 
     <!--查询所有主键和名称-->
     <select id="selectAll" resultMap="UsersMap">
