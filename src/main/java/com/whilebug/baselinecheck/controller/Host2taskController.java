@@ -65,10 +65,10 @@ public class Host2taskController {
      * @param id 主键
      * @return 单条数据
      */
-    @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteByTaskId", method = RequestMethod.POST)
     @ApiOperation(value = "根据一个主键删除一条**记录的接口",notes = "根据一个主键删除一条**记录的接口",httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "taskId",value = "主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> deleteById(@RequestParam("id") String id) {
         return this.host2taskServiceImpl.deleteById(id);
@@ -77,13 +77,16 @@ public class Host2taskController {
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param taskId 主键
      * @return 实例对象
      */
-    @RequestMapping(value = "/selectById", method = RequestMethod.GET)
+    @RequestMapping(value = "/selectByTaskId", method = RequestMethod.GET)
     @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
-    public Map<String, Object> selectById(Integer id) {
-        return this.host2taskServiceImpl.selectById(id);
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "taskId",value = "主键",paramType = "query",dataType = "String",required = true),
+    })
+    public Map<String, Object> selectById(Integer taskId) {
+        return this.host2taskServiceImpl.selectById(taskId);
     }
     
     /**
@@ -108,6 +111,21 @@ public class Host2taskController {
     @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
     public Map<String, Object> insert(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task) {
         return this.host2taskServiceImpl.insert(host2task);
+    }
+
+    /**
+     * 通过hostID查询单条数据
+     *
+     * @param hostId 主键
+     * @return 实例对象
+     */
+    @RequestMapping(value = "/selectByHostId", method = RequestMethod.GET)
+    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "hostId",value = "主键",paramType = "query",dataType = "String",required = true),
+    })
+    public Map<String, Object> selectByHostId(Integer hostId) {
+        return this.host2taskServiceImpl.selectByHostId(hostId);
     }
 
 }

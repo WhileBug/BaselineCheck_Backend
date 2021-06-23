@@ -141,4 +141,12 @@
         delete from baseline.hosts where id = #{id}
     </delete>
 
+    <!--查询单个-->
+    <select id="selectByUserId" resultMap="HostsMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.hosts
+        where user_id = #{userId}
+    </select>
+
 </mapper>

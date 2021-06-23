@@ -25,7 +25,7 @@ public interface Host2taskMapper {
      * @param taskId 主键
      * @return 实例对象
      */
-    Host2task selectById(@Param("id") Integer taskId);
+    List<Host2task> selectById(@Param("taskId") Integer taskId);
 
     /**
      * 根据模糊条件查询总个数
@@ -64,6 +64,13 @@ public interface Host2taskMapper {
      * @param taskId 主键
      * @return 影响行数
      */
-    int deleteById(@Param("id") String taskId);
+    int deleteById(@Param("taskId") String taskId);
 
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param hostId 主键
+     * @return 实例对象
+     */
+    List<Host2task> selectByHostId(@Param("hostId") Integer hostId);
 }

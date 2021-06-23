@@ -110,4 +110,15 @@ public class HostsController {
         return this.hostsServiceImpl.insert(hosts);
     }
 
+    /**
+     * 查找ID对应用户的所有主机
+     *
+     * @param userId 主键
+     * @return 实例对象
+     */
+    @RequestMapping(value = "/selectByUserId", method = RequestMethod.GET)
+    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    public Map<String, Object> selectByUserId(Integer userId) {
+        return this.hostsServiceImpl.selectByUserId(userId);
+    }
 }

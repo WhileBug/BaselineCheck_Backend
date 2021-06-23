@@ -33,7 +33,7 @@ public interface TasksService {
      * @param id 主键
      * @return 实例对象
      */
-    Map<String, Object> deleteById(Integer id);
+    Map<String, Object> selectById(Integer id);
 
     /**
      * 查询分页数据
@@ -67,4 +67,12 @@ public interface TasksService {
      * @return 是否成功
      */
     Map<String, Object> deleteById(String id);
+
+    /**
+     * 通过用户ID查询单条数据
+     *
+     * @param userId 主键
+     * @return 实例对象
+     */
+    Map<String, Object> selectByUserId(Integer userId);
 }

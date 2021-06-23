@@ -134,4 +134,12 @@
         delete from baseline.tasks where id = #{id}
     </delete>
 
+    <!--查询单个-->
+    <select id="selectByUserId" resultMap="TasksMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.tasks
+        where task_user_id = #{userId}
+    </select>
+
 </mapper>
