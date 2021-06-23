@@ -5,10 +5,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (Tasks)表数据库访问层
+ * 扫描任务数据表(Tasks)表数据库访问层
  *
  * @author makejava
- * @since 2021-06-23 15:32:21
+ * @since 2021-06-23 16:54:36
  * @version 1.0
  */
 public interface TasksMapper {
@@ -22,10 +22,10 @@ public interface TasksMapper {
     /**
      * 通过ID查询单条数据
      *
-     * @param taskId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    Tasks selectById(@Param("id") Integer taskId);
+    Tasks selectById(@Param("id") Integer id);
 
     /**
      * 根据模糊条件查询总个数
@@ -61,9 +61,9 @@ public interface TasksMapper {
     /**
      * 通过主键删除数据
      *
-     * @param taskId 主键
+     * @param id 主键
      * @return 影响行数
      */
-    int deleteById(@Param("id") String taskId);
+    int deleteById(@Param("id") String id);
 
 }

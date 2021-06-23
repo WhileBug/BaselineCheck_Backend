@@ -6,24 +6,28 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * (Users)实体类
+ * 用户数据表(Users)实体类
  *
  * @author makejava
- * @since 2021-06-23 15:32:30
+ * @since 2021-06-23 16:54:42
  * @version 1.0
  */
-@ApiModel(value = "Users",description = "$tableInfo.comment")
+@ApiModel(value = "Users",description = "用户数据表")
 public class Users implements Serializable {
-    private static final long serialVersionUID = 164336885325324007L;
+    private static final long serialVersionUID = -82001230880895871L;
     
-	@ApiModelProperty(name = "userId",notes = "${column.comment}",dataType = "Integer",required = true)
-    private Integer userId;
-    
-	@ApiModelProperty(name = "userName",notes = "${column.comment}",dataType = "String",required = true)
-    private String userName;
-    
-	@ApiModelProperty(name = "userPasswrod",notes = "${column.comment}",dataType = "String",required = true)
+	@ApiModelProperty(name = "id",notes = "${column.comment}",dataType = "Integer",required = true)
+    private Integer id;
+    /**
+    * 密码
+    */
+	@ApiModelProperty(name = "userPasswrod",notes = "密码",dataType = "String",required = true)
     private String userPasswrod;
+    /**
+    * 用户名
+    */
+	@ApiModelProperty(name = "userName",notes = "用户名",dataType = "String",required = true)
+    private String userName;
     
 	@ApiModelProperty(name = "userStatus",notes = "${column.comment}",dataType = "Integer",required = true)
     private Integer userStatus;
@@ -50,20 +54,12 @@ public class Users implements Serializable {
     private Integer departmentId;
 
         
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-        
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Integer id) {
+        this.id = id;
     }
         
     public String getUserPasswrod() {
@@ -72,6 +68,14 @@ public class Users implements Serializable {
 
     public void setUserPasswrod(String userPasswrod) {
         this.userPasswrod = userPasswrod;
+    }
+        
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
         
     public Integer getUserStatus() {

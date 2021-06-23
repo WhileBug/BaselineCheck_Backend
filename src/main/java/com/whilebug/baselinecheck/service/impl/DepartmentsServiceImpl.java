@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * (Departments)表服务实现类
+ * 部门数据表(Departments)表服务实现类
  *
  * @author makejava
- * @since 2021-06-23 15:18:08
+ * @since 2021-06-23 16:54:13
  * @version 1.0
  */
 @Service("departmentsService")
@@ -50,15 +50,15 @@ public class DepartmentsServiceImpl {
     /**
      * 通过ID查询单条数据
      *
-     * @param departmentId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    public Map<String, Object> selectById(Integer departmentId) {
+    public Map<String, Object> selectById(Integer id) {
         Map<String, Object> map = new HashMap<>();
         // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("code", 200);
         map.put("msg", "查询成功");
-        map.put("obj", this.departmentsMapper.selectById(departmentId));
+        map.put("obj", this.departmentsMapper.selectById(id));
         return map;
     }
 
@@ -118,11 +118,11 @@ public class DepartmentsServiceImpl {
     /**
      * 通过主键删除数据
      *
-     * @param departmentId 主键
+     * @param id 主键
      * @return 是否成功
      */
-    public Map<String, Object> deleteById(String departmentId) {
-        this.departmentsMapper.deleteById(departmentId);
+    public Map<String, Object> deleteById(String id) {
+        this.departmentsMapper.deleteById(id);
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("msg", "删除成功");

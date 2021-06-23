@@ -5,53 +5,73 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * (Tasks)实体类
+ * 扫描任务数据表(Tasks)实体类
  *
  * @author makejava
- * @since 2021-06-23 15:32:21
+ * @since 2021-06-23 16:54:36
  * @version 1.0
  */
-@ApiModel(value = "Tasks",description = "$tableInfo.comment")
+@ApiModel(value = "Tasks",description = "扫描任务数据表")
 public class Tasks implements Serializable {
-    private static final long serialVersionUID = 746757653308997559L;
-    
-	@ApiModelProperty(name = "taskId",notes = "${column.comment}",dataType = "Integer",required = true)
-    private Integer taskId;
-    
-	@ApiModelProperty(name = "taskName",notes = "${column.comment}",dataType = "String",required = true)
+    private static final long serialVersionUID = 618554911906254014L;
+    /**
+    * 任务id
+    */
+	@ApiModelProperty(name = "id",notes = "任务id",dataType = "Integer",required = true)
+    private Integer id;
+    /**
+    * 任务名称
+    */
+	@ApiModelProperty(name = "taskName",notes = "任务名称",dataType = "String",required = true)
     private String taskName;
-    
-	@ApiModelProperty(name = "description",notes = "${column.comment}",dataType = "String",required = true)
+    /**
+    * 任务描述
+    */
+	@ApiModelProperty(name = "description",notes = "任务描述",dataType = "String",required = true)
     private String description;
-    
-	@ApiModelProperty(name = "taskUserId",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 发布任务的用户id
+    */
+	@ApiModelProperty(name = "taskUserId",notes = "发布任务的用户id",dataType = "Integer",required = true)
     private Integer taskUserId;
-    
-	@ApiModelProperty(name = "baselineCheck",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否进行基线检查，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "baselineCheck",notes = "是否进行基线检查，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer baselineCheck;
-    
-	@ApiModelProperty(name = "systemInfo",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否检查系统信息，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "systemInfo",notes = "是否检查系统信息，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer systemInfo;
-    
-	@ApiModelProperty(name = "autorun",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否检查自启动项，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "autorun",notes = "是否检查自启动项，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer autorun;
-    
-	@ApiModelProperty(name = "patch",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否检查补丁项，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "patch",notes = "是否检查补丁项，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer patch;
-    
-	@ApiModelProperty(name = "ports",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否检查打开的端口，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "ports",notes = "是否检查打开的端口，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer ports;
-    
-	@ApiModelProperty(name = "softwareInfo",notes = "${column.comment}",dataType = "Integer",required = true)
+    /**
+    * 是否检查软件信息，1表示检查 0表示不检查
+    */
+	@ApiModelProperty(name = "softwareInfo",notes = "是否检查软件信息，1表示检查 0表示不检查",dataType = "Integer",required = true)
     private Integer softwareInfo;
 
         
-    public Integer getTaskId() {
-        return taskId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTaskId(Integer taskId) {
-        this.taskId = taskId;
+    public void setId(Integer id) {
+        this.id = id;
     }
         
     public String getTaskName() {

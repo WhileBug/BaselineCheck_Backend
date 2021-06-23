@@ -5,10 +5,10 @@ import com.whilebug.baselinecheck.pojo.Host2task;
 import java.util.Map;
 
 /**
- * (Host2task)表服务接口类
+ * 任务task与主机host之间的对应关系(Host2task)表服务接口类
  *
  * @author makejava
- * @since 2021-06-23 15:32:01
+ * @since 2021-06-23 16:54:22
  * @version 1.0
  */
 public interface Host2taskService {

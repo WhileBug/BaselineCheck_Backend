@@ -4,21 +4,20 @@ import com.whilebug.baselinecheck.pojo.Departments;
 import com.whilebug.baselinecheck.service.impl.DepartmentsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
-import com.whilebug.baselinecheck.mapper.DepartmentsMapper;
 
 import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * (Departments)表控制层
+ * 部门数据表(Departments)表控制层
  *
  * @author makejava
- * @since 2021-06-23 15:18:08
+ * @since 2021-06-23 16:54:15
  * @version 1.0
  */
 @RestController
 @RequestMapping("/departments")
-@Api(value = "(Departments)管理",tags = "(Departments)管理接口API")
+@Api(value = "部门数据表(Departments)管理",tags = "部门数据表(Departments)管理接口API")
 @ApiResponses({
         @ApiResponse(code=400,message="请求参数不完整或者错误"),
         @ApiResponse(code=404,message="找不到页面"),

@@ -5,10 +5,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (Hosts)表数据库访问层
+ * 主机数据表(Hosts)表数据库访问层
  *
  * @author makejava
- * @since 2021-06-23 15:32:11
+ * @since 2021-06-23 16:54:29
  * @version 1.0
  */
 public interface HostsMapper {
@@ -22,10 +22,10 @@ public interface HostsMapper {
     /**
      * 通过ID查询单条数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    Hosts selectById(@Param("id") Integer hostId);
+    Hosts selectById(@Param("id") Integer id);
 
     /**
      * 根据模糊条件查询总个数
@@ -61,9 +61,9 @@ public interface HostsMapper {
     /**
      * 通过主键删除数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 影响行数
      */
-    int deleteById(@Param("id") String hostId);
+    int deleteById(@Param("id") String id);
 
 }

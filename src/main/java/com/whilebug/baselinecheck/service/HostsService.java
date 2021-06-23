@@ -5,10 +5,10 @@ import com.whilebug.baselinecheck.pojo.Hosts;
 import java.util.Map;
 
 /**
- * (Hosts)表服务接口类
+ * 主机数据表(Hosts)表服务接口类
  *
  * @author makejava
- * @since 2021-06-23 15:32:11
+ * @since 2021-06-23 16:54:28
  * @version 1.0
  */
 public interface HostsService {
@@ -30,10 +30,10 @@ public interface HostsService {
     /**
      * 通过ID查询单条数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    Map<String, Object> deleteById(Integer hostId);
+    Map<String, Object> deleteById(Integer id);
 
     /**
      * 查询分页数据
@@ -63,8 +63,8 @@ public interface HostsService {
     /**
      * 通过主键删除数据
      *
-     * @param hostId 主键
+     * @param id 主键
      * @return 是否成功
      */
-    Map<String, Object> deleteById(String hostId);
+    Map<String, Object> deleteById(String id);
 }

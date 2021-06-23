@@ -3,7 +3,7 @@
 <mapper namespace="com.whilebug.baselinecheck.mapper.TasksMapper">
 
     <resultMap type="com.whilebug.baselinecheck.pojo.Tasks" id="TasksMap">
-        <result property="taskId" column="task_id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="taskName" column="task_name" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="taskUserId" column="task_user_id" jdbcType="INTEGER"/>
@@ -16,7 +16,7 @@
     </resultMap>
     
     <sql id="Beas_Column_List">
-        task_id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info        
+        id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info        
     </sql>
 
     <!--查询所有主键和名称-->
@@ -60,7 +60,7 @@
         select
             <include refid="Beas_Column_List"/>
         from baseline.tasks
-        where task_id = #{taskId}
+        where id = #{id}
     </select>
     
     <!--根据条件查询当前表的满足条件的个数-->
@@ -90,8 +90,8 @@
 
     <!--新增所有列-->
     <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Tasks">
-        insert into baseline.tasks(task_id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info)
-        values (#{taskId}, #{taskName}, #{description}, #{taskUserId}, #{baselineCheck}, #{systemInfo}, #{autorun}, #{patch}, #{ports}, #{softwareInfo})
+        insert into baseline.tasks(id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info)
+        values (#{id}, #{taskName}, #{description}, #{taskUserId}, #{baselineCheck}, #{systemInfo}, #{autorun}, #{patch}, #{ports}, #{softwareInfo})
     </insert>
 
     <!--通过主键修改数据-->
@@ -126,12 +126,12 @@
                 software_info = #{softwareInfo},
             </if>
         </set>
-        where task_id = #{taskId}
+        where id = #{id}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from baseline.tasks where task_id = #{taskId}
+        delete from baseline.tasks where id = #{id}
     </delete>
 
 </mapper>

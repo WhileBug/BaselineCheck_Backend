@@ -3,14 +3,14 @@
 <mapper namespace="com.whilebug.baselinecheck.mapper.DepartmentsMapper">
 
     <resultMap type="com.whilebug.baselinecheck.pojo.Departments" id="DepartmentsMap">
-        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="leaderId" column="leader_id" jdbcType="INTEGER"/>
     </resultMap>
     
     <sql id="Beas_Column_List">
-        department_id, department_name, description, leader_id        
+        id, department_name, description, leader_id        
     </sql>
 
     <!--查询所有主键和名称-->
@@ -36,7 +36,7 @@
         select
             <include refid="Beas_Column_List"/>
         from baseline.departments
-        where department_id = #{departmentId}
+        where id = #{id}
     </select>
     
     <!--根据条件查询当前表的满足条件的个数-->
@@ -66,8 +66,8 @@
 
     <!--新增所有列-->
     <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Departments">
-        insert into baseline.departments(department_id, department_name, description, leader_id)
-        values (#{departmentId}, #{departmentName}, #{description}, #{leaderId})
+        insert into baseline.departments(id, department_name, description, leader_id)
+        values (#{id}, #{departmentName}, #{description}, #{leaderId})
     </insert>
 
     <!--通过主键修改数据-->
@@ -84,12 +84,12 @@
                 leader_id = #{leaderId},
             </if>
         </set>
-        where department_id = #{departmentId}
+        where id = #{id}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from baseline.departments where department_id = #{departmentId}
+        delete from baseline.departments where id = #{id}
     </delete>
 
 </mapper>
