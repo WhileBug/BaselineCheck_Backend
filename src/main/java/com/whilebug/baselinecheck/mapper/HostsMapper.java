@@ -32,13 +32,13 @@ public interface HostsMapper {
      *
      * @return 返回查询到的总个数
      */
-    int selectForCount(String name);
+    int selectForCount(@Param("name")String name);
 
     /**
      * 通过实体作为筛选条件查询
      * 
      * @param index 查询起始位置
-     * @param name  查询条件
+     * @param hostName  查询条件
      * @return 对象列表
      */
     List<Hosts> selectForPage(@Param("index") int index, @Param("name")String name);

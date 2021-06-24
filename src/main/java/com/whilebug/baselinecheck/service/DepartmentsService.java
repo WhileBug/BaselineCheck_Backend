@@ -15,10 +15,10 @@ public interface DepartmentsService {
     /**
      * 根据模糊条件查询总个数
      *
-     * @param name 查询条件
+     * @param departmentName 查询条件
      * @return 返回查询到的总个数
      */
-    Map<String, Object> selectForCount(String name);
+    Map<String, Object> selectForCount(String departmentName);
 
     /**
      * 查询所有数据

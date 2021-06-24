@@ -46,7 +46,7 @@
         from baseline.departments
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                department_name like "%"#{name}"%"
             </if>
         </where>
     </select>
@@ -58,7 +58,7 @@
         from baseline.departments
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                department_name like "%"#{name}"%"
             </if>
         </where>
         limit #{index},10;

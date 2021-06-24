@@ -70,7 +70,7 @@
         from baseline.tasks
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                task_name like "%"#{name}"%"
             </if>
         </where>
     </select>
@@ -82,7 +82,7 @@
         from baseline.tasks
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                task_name like "%"#{name}"%"
             </if>
         </where>
         limit #{index},10;

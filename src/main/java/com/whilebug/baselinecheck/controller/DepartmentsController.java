@@ -45,7 +45,7 @@ public class DepartmentsController {
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
     })
-    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, String name) {
+    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, @RequestParam(name = "name")String name) {
         return this.departmentsServiceImpl.selectForPage(index, name);
     }
     
@@ -85,7 +85,22 @@ public class DepartmentsController {
     public Map<String, Object> selectById(Integer id) {
         return this.departmentsServiceImpl.selectById(id);
     }
-    
+
+    /**
+     * 通过departmentName模糊查询所有数量
+     * @param name  模糊查询的内容
+     * @return 单条数据
+     */
+    @RequestMapping(value = "/selectForCount", method = RequestMethod.GET)
+    @ApiOperation(value = "模糊查询数量接口",notes = "模糊查询数量接口",httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name",value = "部门名称",paramType = "query",dataType = "String",required = true)
+    })
+    public Map<String, Object> selectForCount(@RequestParam String name) {
+        return this.departmentsServiceImpl.selectForCount(name);
+    }
+
+
     /**
      * 通过主键更新单条数据
      *
