@@ -106,7 +106,7 @@ public class HostsController {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
-    public Map<String, Object> insert(@RequestBody @ApiParam(name = "hosts",value = "pojo模型",required = true) Hosts hosts) {
+    public Map<String, Object> insert(@RequestBody @ApiParam(name = "hosts",value = "pojo模型",required = false) Hosts hosts) {
         return this.hostsServiceImpl.insert(hosts);
     }
 
