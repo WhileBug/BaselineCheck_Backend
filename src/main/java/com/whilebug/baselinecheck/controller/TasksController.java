@@ -45,10 +45,24 @@ public class TasksController {
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
     })
-    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, String name) {
+    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, @RequestParam(name = "name")String name) {
         return this.tasksServiceImpl.selectForPage(index, name);
     }
-    
+
+    /**
+     * 通过dname模糊查询所有数量
+     * @param name  模糊查询的内容
+     * @return 单条数据
+     */
+    @RequestMapping(value = "/selectForCount", method = RequestMethod.GET)
+    @ApiOperation(value = "模糊查询数量接口",notes = "模糊查询数量接口",httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name",value = "部门名称",paramType = "query",dataType = "String",required = true)
+    })
+    public Map<String, Object> selectForCount(@RequestParam String name) {
+        return this.tasksServiceImpl.selectForCount(name);
+    }
+
     /**
      * 查询所有数据
      * @return 返回所有数据

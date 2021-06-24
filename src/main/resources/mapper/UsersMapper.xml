@@ -74,7 +74,7 @@
         from baseline.users
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                user_name like "%"#{name}"%"
             </if>
         </where>
     </select>
@@ -86,7 +86,7 @@
         from baseline.users
         <where>
             <if test="name != null and name != ''">
-                name like "%"#{name}"%"
+                user_name like "%"#{name}"%"
             </if>
         </where>
         limit #{index},10;

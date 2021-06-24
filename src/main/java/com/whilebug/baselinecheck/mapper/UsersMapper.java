@@ -32,7 +32,7 @@ public interface UsersMapper {
      *
      * @return 返回查询到的总个数
      */
-    int selectForCount(String name);
+    int selectForCount(@Param("name")String name);
 
     /**
      * 通过实体作为筛选条件查询
