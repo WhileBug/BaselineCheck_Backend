@@ -23,7 +23,7 @@ public class Hosts implements Serializable {
     /**
     * 主机host的主机名host_name
     */
-	@ApiModelProperty(name = "hostName",notes = "主机host的主机名host_name",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostName",notes = "主机host的主机名host_name",dataType = "String",required = false)
     private String hostName;
     /**
     * 主机host的ip地址
@@ -33,37 +33,37 @@ public class Hosts implements Serializable {
     /**
     * 主机host的mac地址host_mac
     */
-	@ApiModelProperty(name = "hostMac",notes = "主机host的mac地址host_mac",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostMac",notes = "主机host的mac地址host_mac",dataType = "String",required = false)
     private String hostMac;
     /**
     * 主机host的用户名host_user_name，一般为root
     */
-	@ApiModelProperty(name = "hostUserName",notes = "主机host的用户名host_user_name，一般为root",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostUserName",notes = "主机host的用户名host_user_name，一般为root",dataType = "String",required = false)
     private String hostUserName;
     /**
     * 主机host的用户的密码host_user_password
     */
-	@ApiModelProperty(name = "hostUserPassword",notes = "主机host的用户的密码host_user_password",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostUserPassword",notes = "主机host的用户的密码host_user_password",dataType = "String",required = false)
     private String hostUserPassword;
     /**
     * 主机host的打开端口host_user_protocol
     */
-	@ApiModelProperty(name = "hostUserPort",notes = "主机host的打开端口host_user_protocol",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostUserPort",notes = "主机host的打开端口host_user_protocol",dataType = "String",required = false)
     private String hostUserPort;
     /**
     * 主机host的协议host_user_protocol
     */
-	@ApiModelProperty(name = "hostUserProtocol",notes = "主机host的协议host_user_protocol",dataType = "String",required = true)
+	@ApiModelProperty(name = "hostUserProtocol",notes = "主机host的协议host_user_protocol",dataType = "String",required = false)
     private String hostUserProtocol;
     /**
     * 主机host的创建时间create_time
     */
-	@ApiModelProperty(name = "createTime",notes = "主机host的创建时间create_time",dataType = "Date",required = true)
+	@ApiModelProperty(name = "createTime",notes = "主机host的创建时间create_time",dataType = "Date",required = false)
     private Date createTime;
     /**
     * 主机host的最后更新时间last_update_time
     */
-	@ApiModelProperty(name = "lastUpdateTime",notes = "主机host的最后更新时间last_update_time",dataType = "Date",required = true)
+	@ApiModelProperty(name = "lastUpdateTime",notes = "主机host的最后更新时间last_update_time",dataType = "Date",required = false)
     private Date lastUpdateTime;
     /**
     * 主机host的拥有者id，user_id，同时是users数据表的主键user_id

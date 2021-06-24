@@ -45,10 +45,24 @@ public class HostsController {
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
     })
-    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, String name) {
+    public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, @RequestParam(name = "name")String name) {
         return this.hostsServiceImpl.selectForPage(index, name);
     }
-    
+
+    /**
+     * 通过departmentName模糊查询所有数量
+     * @param name  模糊查询的内容
+     * @return 单条数据
+     */
+    @RequestMapping(value = "/selectForCount", method = RequestMethod.GET)
+    @ApiOperation(value = "模糊查询数量接口",notes = "模糊查询数量接口",httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name",value = "部门名称",paramType = "query",dataType = "String",required = true)
+    })
+    public Map<String, Object> selectForCount(@RequestParam String name) {
+        return this.hostsServiceImpl.selectForCount(name);
+    }
+
     /**
      * 查询所有数据
      * @return 返回所有数据
@@ -106,7 +120,7 @@ public class HostsController {
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
-    public Map<String, Object> insert(@RequestBody @ApiParam(name = "hosts",value = "pojo模型",required = true) Hosts hosts) {
+    public Map<String, Object> insert(@RequestBody @ApiParam(name = "hosts",value = "pojo模型",required = false) Hosts hosts) {
         return this.hostsServiceImpl.insert(hosts);
     }
 
