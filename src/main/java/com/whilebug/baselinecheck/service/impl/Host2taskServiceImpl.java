@@ -143,4 +143,19 @@ public class Host2taskServiceImpl {
         map.put("obj", this.host2taskMapper.selectByHostId(hostId));
         return map;
     }
+
+    /**
+     * 通过hostID查询多条数据
+     *
+     * @param hostId 主键
+     * @return 实例对象
+     */
+    public Map<String, Object> selectTaskByHostId(Integer hostId) {
+        Map<String, Object> map = new HashMap<>();
+        // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+        map.put("code", 200);
+        map.put("msg", "查询成功");
+        map.put("obj", this.host2taskMapper.selectTaskByHostId(hostId));
+        return map;
+    }
 }

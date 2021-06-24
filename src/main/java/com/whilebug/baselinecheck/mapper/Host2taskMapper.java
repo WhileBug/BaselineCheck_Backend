@@ -73,4 +73,12 @@ public interface Host2taskMapper {
      * @return 实例对象
      */
     List<Host2task> selectByHostId(@Param("hostId") Integer hostId);
+
+    /**
+     * 通过hostId查询多条数据
+     *
+     * @param hostId 主键
+     * @return 实例对象
+     */
+    List<Host2task> selectTaskByHostId(@Param("hostId") Integer hostId);
 }

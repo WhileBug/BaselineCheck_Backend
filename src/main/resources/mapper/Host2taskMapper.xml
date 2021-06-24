@@ -79,4 +79,12 @@
         from baseline.host2task
         where host_id = #{hostId}
     </select>
+
+    <!--查询单个-->
+    <select id="selectTaskByHostId" resultMap="Host2taskMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.host2task
+        where host_id = #{hostId} and status = 0
+    </select>
 </mapper>

@@ -74,5 +74,5 @@ public interface Host2taskService {
      * @param hostId 主键
      * @return 实例对象
      */
-    Map<String, Object> selectByHostId(Integer hostId);
+    Map<String, Object> selectTaskByHostId(Integer hostId);
 }

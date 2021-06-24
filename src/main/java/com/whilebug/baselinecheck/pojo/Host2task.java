@@ -8,12 +8,12 @@ import io.swagger.annotations.ApiModelProperty;
  * 任务task与主机host之间的对应关系(Host2task)实体类
  *
  * @author makejava
- * @since 2021-06-23 16:54:24
+ * @since 2021-06-24 10:01:20
  * @version 1.0
  */
 @ApiModel(value = "Host2task",description = "任务task与主机host之间的对应关系")
 public class Host2task implements Serializable {
-    private static final long serialVersionUID = 175967111190881964L;
+    private static final long serialVersionUID = -26402033528791583L;
     /**
     * 任务task的主键task_id
     */
@@ -24,6 +24,11 @@ public class Host2task implements Serializable {
     */
 	@ApiModelProperty(name = "hostId",notes = "主机host的主键host_id",dataType = "Integer",required = true)
     private Integer hostId;
+    /**
+    * 标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成
+    */
+	@ApiModelProperty(name = "status",notes = "标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成",dataType = "Integer",required = true)
+    private Integer status;
 
         
     public Integer getTaskId() {
@@ -40,6 +45,14 @@ public class Host2task implements Serializable {
 
     public void setHostId(Integer hostId) {
         this.hostId = hostId;
+    }
+        
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
 }
