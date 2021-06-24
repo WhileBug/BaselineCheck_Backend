@@ -34,8 +34,11 @@ public class Users implements Serializable {
     */
 	@ApiModelProperty(name = "userName",notes = "用户名",dataType = "String",required = true)
     private String userName;
-    
-	@ApiModelProperty(name = "userStatus",notes = "${column.comment}",dataType = "Integer",required = true)
+
+    @ApiModelProperty(name = "pid",notes = "用户唯一标识",dataType = "String",required = true)
+    private String pid;
+
+    @ApiModelProperty(name = "userStatus",notes = "${column.comment}",dataType = "Integer",required = true)
     private Integer userStatus;
     
 	@ApiModelProperty(name = "userPhone",notes = "${column.comment}",dataType = "String",required = true)
@@ -59,7 +62,11 @@ public class Users implements Serializable {
 	@ApiModelProperty(name = "departmentId",notes = "${column.comment}",dataType = "Integer",required = true)
     private Integer departmentId;
 
-        
+    public Users(String username, String password) {
+        this.userName = username;
+        this.userPasswrod = password;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -146,6 +153,14 @@ public class Users implements Serializable {
 
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public String getPID() {
+        return pid;
+    }
+
+    public void setPID(String PID) {
+        this.pid = PID;
     }
 
 }

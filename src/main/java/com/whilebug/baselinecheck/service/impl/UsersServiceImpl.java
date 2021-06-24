@@ -43,7 +43,7 @@ public class UsersServiceImpl {
             newUser.setUserName(username);
             newUser.setUserPasswrod(md5);
             newUser.setRegisterTime(new Timestamp(System.currentTimeMillis()));
-
+            newUser.setPID(md5.substring(0,5));
             usersMapper.registerUser(newUser);
             map.put("code", 200);
             map.put("msg", "注册成功");
