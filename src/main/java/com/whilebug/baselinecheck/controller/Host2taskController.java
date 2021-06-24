@@ -143,4 +143,14 @@ public class Host2taskController {
         return this.host2taskServiceImpl.finishById(host2task);
     }
 
+    @RequestMapping(value = "/getAnalysisResult", method = RequestMethod.GET)
+    @ApiOperation(value = "获取检查分析结果的接口",notes = "获取检查分析结果的接口",httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "hostId",value = "主机编号主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "taskId",value = "任务编号主键",paramType = "query",dataType = "String",required = true)
+    })
+    public Map<String, Object> getAnalysisResult(String hostId, String taskId) {
+        return this.host2taskServiceImpl.getAnalysisResult(hostId, taskId);
+    }
+
 }
