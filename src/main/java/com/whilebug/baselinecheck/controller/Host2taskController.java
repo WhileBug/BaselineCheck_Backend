@@ -34,13 +34,13 @@ public class Host2taskController {
     private Host2taskServiceImpl host2taskServiceImpl;
 
     /**
-     * 通过主键查询单条数据
+     * 通过主键模糊查询多条数据
      * @param index  需要查询的页码
      * @param name  模糊查询的内容
      * @return 单条数据
      */
     @RequestMapping(value = "/selectForPage", method = RequestMethod.GET)
-    @ApiOperation(value = "列表查询分页接口",notes = "列表查询分页接口",httpMethod = "GET")
+    @ApiOperation(value = "列表查询分页接口（已废弃）",notes = "列表查询分页接口（已废弃）",httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
@@ -50,25 +50,25 @@ public class Host2taskController {
     }
     
     /**
-     * 查询所有数据
+     * 查询所有任务主机映射关系数据
      * @return 返回所有数据
      */
     @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
-    @ApiOperation(value = "查询所有数据接口",notes = "查询所有数据接口",httpMethod = "GET")
+    @ApiOperation(value = "查询所有任务主机映射关系数据接口",notes = "查询所有任务主机映射关系数据接口",httpMethod = "GET")
     public Map<String, Object> selectAll() {
         return this.host2taskServiceImpl.selectAll();
     }
     
     /**
-     * 通过主键删除单条数据
+     * 通过主键删除单条任务主机映射关系数据
      *
-     * @param id 主键
+     * @param id 主键，任务编号
      * @return 单条数据
      */
     @RequestMapping(value = "/deleteByTaskId", method = RequestMethod.POST)
-    @ApiOperation(value = "根据一个主键删除一条**记录的接口",notes = "根据一个主键删除一条**记录的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据一个主键删除一条任务主机映射关系记录的接口",notes = "根据一个主键删除一条任务主机映射关系记录的接口",httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "taskId",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "taskId",value = "任务编号主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> deleteById(@RequestParam("id") String id) {
         return this.host2taskServiceImpl.deleteById(id);
@@ -77,13 +77,13 @@ public class Host2taskController {
     /**
      * 通过ID查询单条数据
      *
-     * @param taskId 主键
+     * @param taskId 主键，任务编号
      * @return 实例对象
      */
     @RequestMapping(value = "/selectByTaskId", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过任务编号主键查询一个任务主机映射关系的接口",notes = "通过任务编号主键查询一个任务主机映射关系的接口",httpMethod = "GET")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "taskId",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "taskId",value = "任务编号主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> selectById(Integer taskId) {
         return this.host2taskServiceImpl.selectById(taskId);
@@ -96,50 +96,50 @@ public class Host2taskController {
      * @return 单条数据
      */
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    @ApiOperation(value = "通过主键更新一个**的接口",notes = "通过主键更新一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "通过主键更新一个任务主机映射关系的接口",notes = "通过主键更新一个任务主机映射关系的接口",httpMethod = "POST")
     public Map<String, Object> updateById(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task) {
         return this.host2taskServiceImpl.updateById(host2task);
     }
     
     /**
-     * 通过一个pojo对象新增单条数据
+     * 通过一个任务主机映射关系pojo对象新增单条数据
      *
-     * @param host2task 一个数据库对应的POJO数据对象
+     * @param host2task 一个数据库对应的任务主机映射关系POJO数据对象
      * @return 返回插入的主键id
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据完整记录新增一个任务主机映射关系的接口",notes = "根据完整记录新增一个任务主机映射关系的接口",httpMethod = "POST")
     public Map<String, Object> insert(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task) {
         return this.host2taskServiceImpl.insert(host2task);
     }
 
     /**
-     * 通过hostID查询单条数据
+     * 通过hostID，主机编号查询单条数据
      *
-     * @param hostId 主键
+     * @param hostId 主键,主机编号
      * @return 实例对象
      */
     @RequestMapping(value = "/selectByHostId", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过主机编号主键查询一个任务主机映射关系的接口",notes = "通过主机编号主键查询一个任务主机映射关系的接口",httpMethod = "GET")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "hostId",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "hostId",value = "主机编号主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> selectByHostId(Integer hostId) {
         return this.host2taskServiceImpl.selectByHostId(hostId);
     }
 
     @RequestMapping(value = "/selectTaskByHostId", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过主机编号主键查询主机所有未完成任务的接口",notes = "通过主机编号主键查询主机所有未完成任务的接口",httpMethod = "GET")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "hostId",value = "主键",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "hostId",value = "主机编号主键",paramType = "query",dataType = "String",required = true),
     })
     public Map<String, Object> selectTaskByHostId(Integer hostId) {
         return this.host2taskServiceImpl.selectTaskByHostId(hostId);
     }
 
     @RequestMapping(value = "/finishById", method = RequestMethod.POST)
-    @ApiOperation(value = "通过主键更新一个**的接口",notes = "通过主键更新一个**的接口",httpMethod = "POST")
-    public Map<String, Object> finishById(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task) {
+    @ApiOperation(value = "通过任务编号和主机编号主键更新一个主机所有未完成任务的接口",notes = "通过任务编号和主机编号主键更新一个主机所有未完成任务的接口",httpMethod = "POST")
+    public Map<String, Object> finishById(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task){//, @ApiParam(name = "analysisResult",required = false) String analysisResult) {
         return this.host2taskServiceImpl.finishById(host2task);
     }
 

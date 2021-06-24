@@ -30,6 +30,12 @@ public class Host2task implements Serializable {
 	@ApiModelProperty(name = "status",notes = "标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成",dataType = "Integer",required = false)
     private Integer status;
 
+    /**
+     * 获取当前任务分析结果的json字符串
+     */
+    @ApiModelProperty(name = "analysisResult",notes = "任务分析结果的json字符串",dataType = "String",required = false)
+    private String analysisResult;
+
         
     public Integer getTaskId() {
         return taskId;
@@ -55,4 +61,11 @@ public class Host2task implements Serializable {
         this.status = status;
     }
 
+    public String getAnalysisResult() {
+        return analysisResult;
+    }
+
+    public void setAnalysisResult(String analysisResult) {
+        this.analysisResult = analysisResult;
+    }
 }

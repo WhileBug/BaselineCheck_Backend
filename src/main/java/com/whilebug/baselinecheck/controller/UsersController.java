@@ -43,7 +43,7 @@ public class UsersController {
     @ApiOperation(value = "列表查询分页接口",notes = "列表查询分页接口",httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
-            @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
+            @ApiImplicitParam(name = "name",value = "任务名称",paramType = "query",dataType = "String",required = false)
     })
     public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, @RequestParam(name = "name")String name) {
         return this.usersServiceImpl.selectForPage(index, name);
@@ -80,7 +80,7 @@ public class UsersController {
      * @return 单条数据
      */
     @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
-    @ApiOperation(value = "根据一个主键删除一条**记录的接口",notes = "根据一个主键删除一条**记录的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据一个主键删除一条用户记录的接口",notes = "根据一个主键删除一条用户记录的接口",httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id",value = "主键",paramType = "query",dataType = "String",required = true),
     })
@@ -95,7 +95,7 @@ public class UsersController {
      * @return 实例对象
      */
     @RequestMapping(value = "/selectById", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过主键查询一个用户的接口",notes = "通过主键查询一个用户的接口",httpMethod = "GET")
     public Map<String, Object> selectById(Integer id) {
         return this.usersServiceImpl.selectById(id);
     }
@@ -107,7 +107,7 @@ public class UsersController {
      * @return 单条数据
      */
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    @ApiOperation(value = "通过主键更新一个**的接口",notes = "通过主键更新一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "通过主键更新一个用户的接口",notes = "通过主键更新一个用户的接口",httpMethod = "POST")
     public Map<String, Object> updateById(@RequestBody @ApiParam(name = "users",value = "pojo模型",required = true) Users users) {
         return this.usersServiceImpl.updateById(users);
     }
@@ -119,7 +119,7 @@ public class UsersController {
      * @return 返回插入的主键id
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据完整记录新增一个用户的接口",notes = "根据完整记录新增一个用户的接口",httpMethod = "POST")
     public Map<String, Object> insert(@RequestBody @ApiParam(name = "users",value = "pojo模型",required = true) Users users) {
         return this.usersServiceImpl.insert(users);
     }
@@ -132,7 +132,7 @@ public class UsersController {
      * @return 实例对象
      */
     @RequestMapping(value = "/selectByDepartmentId", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过部门编号查询该部门所有用户的接口",notes = "通过部门编号查询该部门所有用户的接口",httpMethod = "GET")
     public Map<String, Object> selectByDepartmentId(Integer departmentId) {
         return this.usersServiceImpl.selectByDepartmentId(departmentId);
     }
