@@ -87,4 +87,13 @@
         from baseline.host2task
         where host_id = #{hostId} and status = 0
     </select>
+
+    <!--通过主键修改数据-->
+    <update id="finishById" parameterType="com.whilebug.baselinecheck.pojo.Host2task">
+        update baseline.host2task
+        <set>
+            status = 2
+        </set>
+        where task_id = #{taskId} and host_id = #{hostId}
+    </update>
 </mapper>

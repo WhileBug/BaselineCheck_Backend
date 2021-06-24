@@ -137,4 +137,10 @@ public class Host2taskController {
         return this.host2taskServiceImpl.selectTaskByHostId(hostId);
     }
 
+    @RequestMapping(value = "/finishById", method = RequestMethod.POST)
+    @ApiOperation(value = "通过主键更新一个**的接口",notes = "通过主键更新一个**的接口",httpMethod = "POST")
+    public Map<String, Object> finishById(@RequestBody @ApiParam(name = "host2task",value = "pojo模型",required = true) Host2task host2task) {
+        return this.host2taskServiceImpl.finishById(host2task);
+    }
+
 }

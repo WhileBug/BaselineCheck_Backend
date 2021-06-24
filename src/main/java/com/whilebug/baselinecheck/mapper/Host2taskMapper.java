@@ -81,4 +81,12 @@ public interface Host2taskMapper {
      * @return 实例对象
      */
     List<Host2task> selectTaskByHostId(@Param("hostId") Integer hostId);
+
+    /**
+     * 修改数据
+     *
+     * @param host2task 实例对象
+     * @return 影响行数
+     */
+    int finishById(Host2task host2task);
 }

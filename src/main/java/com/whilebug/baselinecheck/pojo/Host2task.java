@@ -27,7 +27,7 @@ public class Host2task implements Serializable {
     /**
     * 标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成
     */
-	@ApiModelProperty(name = "status",notes = "标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成",dataType = "Integer",required = true)
+	@ApiModelProperty(name = "status",notes = "标识当前主机host_id的任务task_id是否完成，0 未完成 1 进行中 2已完成",dataType = "Integer",required = false)
     private Integer status;
 
         

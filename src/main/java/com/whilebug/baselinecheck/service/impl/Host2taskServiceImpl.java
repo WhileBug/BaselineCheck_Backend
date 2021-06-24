@@ -158,4 +158,18 @@ public class Host2taskServiceImpl {
         map.put("obj", this.host2taskMapper.selectTaskByHostId(hostId));
         return map;
     }
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param host2task 实例对象
+     * @return 实例对象
+     */
+    public Map<String, Object> finishById(Host2task host2task) {
+        this.host2taskMapper.finishById(host2task);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+        map.put("msg", "更新成功");
+        return map;
+    }
 }
