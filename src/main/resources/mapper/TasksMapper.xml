@@ -88,6 +88,13 @@
         limit #{index},10;
     </select>
 
+    <!--根据name查询Id-->
+    <select id="selectIdByName" resultType="Integer">
+        select id
+        from baseline.tasks
+        where task_name = #{taskName}
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Tasks">
         insert into baseline.tasks(id, task_name, description, task_user_id, baseline_check, system_info, autorun, patch, ports, software_info)
