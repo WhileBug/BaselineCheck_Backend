@@ -1,17 +1,15 @@
 package com.whilebug.baselinecheck.service.impl;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.whilebug.baselinecheck.pojo.Host2task;
 import com.whilebug.baselinecheck.mapper.Host2taskMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.UnsupportedEncodingException;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
@@ -176,24 +174,35 @@ public class Host2taskServiceImpl {
     public Map<String, Object> finishById(Host2task host2task) {
         this.host2taskMapper.finishById(host2task);
 
-        String analysisResult = host2task.getAnalysisResult();
-        //String path = "com/whilebug/baselinecheck/jsonDatabase/host_"+Integer.toString(host2task.getHostId())+"_task_"+Integer.toString(host2task.getTaskId())+".json";
-        //URL projectAddr = ClassLoader.getSystemResource("");
-        //path = projectAddr.toString().substring(6)+path;
-        //System.out.println(path);
-        //String analysisResultStr = analysisResult.toString();
+        JSONObject checkResult = host2task.getCheckResult();
         String path = "jsonDatabase/host_"+Integer.toString(host2task.getHostId())+"_task_"+Integer.toString(host2task.getTaskId())+".json";
-        File file = new File(path);
-        System.out.println(analysisResult);
+        //File file = new File(path);
+        //System.out.println(checkResult);
+        String checkResultStr = JSON.toJSONString(checkResult, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue, SerializerFeature.WriteDateUseDateFormat);
+        System.out.println(checkResultStr);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(analysisResult.getBytes());
-            fileOutputStream.close();
-        }catch (Exception e){
+            File file = new File(path);
+            if (!file.getParentFile().exists()) { // 如果父目录不存在，创建父目录
+                file.getParentFile().mkdirs();
+            }
+            if (file.exists()) { // 如果已存在,删除旧文件
+                file.delete();
+            }
+            file.createNewFile();
+            // 将格式化后的字符串写入文件
+            Writer write = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            write.write(checkResultStr);
+            write.flush();
+            write.close();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        host2task.setAnalysisResult(null);// 将host2task的analysisResult属性重置，防止查询数据库的时候analysisResult太大占网络空间
+        host2task.setCheckResult(null);// 将host2task的checkResult属性重置，防止查询数据库的时候checkResult太大占网络空间
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("msg", "更新成功");
@@ -228,7 +237,7 @@ public class Host2taskServiceImpl {
      * @param hostId 主机的编号 taskId 任务的编号
      * @return 实例对象
      */
-    public Map<String, Object> getAnalysisResult(String hostId, String taskId) {
+    public Map<String, Object> getCheckResult(String hostId, String taskId) {
 
         String path = "jsonDatabase/host_"+hostId+"_task_"+taskId+".json";
         File file = new File(path);
@@ -236,21 +245,19 @@ public class Host2taskServiceImpl {
         try {
             BufferedReader in = new BufferedReader(new FileReader(path));
             String str;
-            String analysisResult=null;
+            String checkResult=null;
             while ((str = in.readLine()) != null) {
                 //System.out.println(str);
-                if (analysisResult==null){
-                    analysisResult=str;
+                if (checkResult==null){
+                    checkResult=str;
                 }else {
-                    analysisResult += str;
+                    checkResult += str;
                 }
             }
             map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新成功");
-            map.put("analysisResult", analysisResult);
-            String analysisResultStr = analysisResult.toString();
-            Map analysisResultMap = JSON.parseObject(analysisResultStr);
-            System.out.println(analysisResultMap);
+            Map checkResultMap = JSON.parseObject(checkResult);
+            map.put("checkResult", checkResultMap);
         }catch (Exception e){
             map.put("code", 201);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新失败");
