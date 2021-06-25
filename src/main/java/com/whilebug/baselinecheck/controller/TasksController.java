@@ -43,7 +43,7 @@ public class TasksController {
     @ApiOperation(value = "列表查询分页接口",notes = "列表查询分页接口",httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page",value = "页码",paramType = "query",dataType = "String",required = true),
-            @ApiImplicitParam(name = "name",value = "**名称",paramType = "query",dataType = "String",required = false)
+            @ApiImplicitParam(name = "name",value = "任务名称",paramType = "query",dataType = "String",required = false)
     })
     public Map<String, Object> selectForPage(@RequestParam(name = "page") int index, @RequestParam(name = "name")String name) {
         return this.tasksServiceImpl.selectForPage(index, name);
@@ -57,7 +57,7 @@ public class TasksController {
     @RequestMapping(value = "/selectForCount", method = RequestMethod.GET)
     @ApiOperation(value = "模糊查询数量接口",notes = "模糊查询数量接口",httpMethod = "GET")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "name",value = "部门名称",paramType = "query",dataType = "String",required = true)
+            @ApiImplicitParam(name = "name",value = "任务名称",paramType = "query",dataType = "String",required = true)
     })
     public Map<String, Object> selectForCount(@RequestParam String name) {
         return this.tasksServiceImpl.selectForCount(name);
@@ -80,7 +80,7 @@ public class TasksController {
      * @return 单条数据
      */
     @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
-    @ApiOperation(value = "根据一个主键删除一条**记录的接口",notes = "根据一个主键删除一条**记录的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据一个主键删除一条任务记录的接口",notes = "根据一个主键删除一条任务记录的接口",httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id",value = "主键",paramType = "query",dataType = "String",required = true),
     })
@@ -95,7 +95,7 @@ public class TasksController {
      * @return 实例对象
      */
     @RequestMapping(value = "/selectById", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过主键查询一个任务的接口",notes = "通过主键查询一个任务的接口",httpMethod = "GET")
     public Map<String, Object> selectById(Integer id) {
         return this.tasksServiceImpl.selectById(id);
     }
@@ -107,7 +107,7 @@ public class TasksController {
      * @return 单条数据
      */
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    @ApiOperation(value = "通过主键更新一个**的接口",notes = "通过主键更新一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "通过主键更新一个任务的接口",notes = "通过主键更新一个任务的接口",httpMethod = "POST")
     public Map<String, Object> updateById(@RequestBody @ApiParam(name = "tasks",value = "pojo模型",required = true) Tasks tasks) {
         return this.tasksServiceImpl.updateById(tasks);
     }
@@ -119,7 +119,7 @@ public class TasksController {
      * @return 返回插入的主键id
      */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    @ApiOperation(value = "根据完整记录新增一个**的接口",notes = "根据完整记录新增一个**的接口",httpMethod = "POST")
+    @ApiOperation(value = "根据完整记录新增一个任务的接口",notes = "根据完整记录新增一个任务的接口",httpMethod = "POST")
     public Map<String, Object> insert(@RequestBody @ApiParam(name = "tasks",value = "pojo模型",required = true) Tasks tasks) {
         return this.tasksServiceImpl.insert(tasks);
     }
@@ -131,7 +131,7 @@ public class TasksController {
      * @return 实例对象
      */
     @RequestMapping(value = "/selectByUserId", method = RequestMethod.GET)
-    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    @ApiOperation(value = "通过主键查询一个任务的接口",notes = "通过主键查询一个任务的接口",httpMethod = "GET")
     public Map<String, Object> selectByUserId(Integer userId) {
         return this.tasksServiceImpl.selectByUserId(userId);
     }
