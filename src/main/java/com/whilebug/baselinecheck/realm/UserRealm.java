@@ -12,6 +12,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 
 public class UserRealm extends AuthorizingRealm {
 
@@ -53,6 +54,8 @@ public class UserRealm extends AuthorizingRealm {
         System.out.println("doGetAuthenticationInfo username=" + user.getUserName());
         System.out.println("doGetAuthenticationInfo password=" + user.getUserPasswrod());
 
+        user.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
+        userService.updateById(user);
 
         //  spring_database.xml文件中已经对此UserRealm bean对象设置了加密方式和次数，固这里无需重复配置，如果xml文件中没有配置，则需要代码配置
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();

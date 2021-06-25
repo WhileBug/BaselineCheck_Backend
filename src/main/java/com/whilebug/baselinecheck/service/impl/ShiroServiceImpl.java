@@ -1,15 +1,21 @@
 package com.whilebug.baselinecheck.service.impl;
 
+import com.whilebug.baselinecheck.mapper.HostsMapper;
+import com.whilebug.baselinecheck.mapper.UsersMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class ShiroServiceImpl {
+
+    @Resource
+    private UsersMapper usermapper;
 
     public Map<String, Object> loginUser(String username, String password) {
         Map<String, Object> map = new HashMap<>();
@@ -23,6 +29,7 @@ public class ShiroServiceImpl {
                 currentUser.login(upToken);    // 调用realm认证用户权限
                 map.put("code", 200);
                 map.put("msg", "登录成功");
+
             } catch (IncorrectCredentialsException ice) {
                 map.put("code", 501);
                 map.put("msg", "用户名/密码不匹配！");
