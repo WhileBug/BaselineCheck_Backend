@@ -1,6 +1,9 @@
 package com.whilebug.baselinecheck.pojo;
 
 import java.io.Serializable;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -33,8 +36,8 @@ public class Host2task implements Serializable {
     /**
      * 获取当前任务分析结果的json字符串
      */
-    @ApiModelProperty(name = "analysisResult",notes = "任务分析结果的json字符串",dataType = "String",required = false)
-    private String analysisResult;
+    @ApiModelProperty(name = "checkResult",notes = "任务检查结果的json字符串",dataType = "JSONObject",required = false)
+    private JSONObject checkResult;
 
         
     public Integer getTaskId() {
@@ -61,11 +64,11 @@ public class Host2task implements Serializable {
         this.status = status;
     }
 
-    public String getAnalysisResult() {
-        return analysisResult;
+    public JSONObject getCheckResult() {
+        return checkResult;
     }
 
-    public void setAnalysisResult(String analysisResult) {
-        this.analysisResult = analysisResult;
+    public void setCheckResult(JSONObject checkResult) {
+        this.checkResult = checkResult;
     }
 }
