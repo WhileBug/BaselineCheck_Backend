@@ -89,4 +89,12 @@ public interface Host2taskMapper {
      * @return 影响行数
      */
     int finishById(Host2task host2task);
+
+    /**
+     * 根据taskId查询hostId
+     *
+     * @param taskId 实例对象
+     * @return 影响行数
+     */
+    int selectHostByTaskId(Integer taskId);
 }
