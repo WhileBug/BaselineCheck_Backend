@@ -80,7 +80,7 @@ public class ShiroConfig {
         Map<String, Filter> filters = new LinkedHashMap<>();
         // 自定义退出LogoutFilter
         MyLogoutFilter myLogoutFilter = new MyLogoutFilter();
-        myLogoutFilter.setRedirectUrl("/login.html");
+//        myLogoutFilter.setRedirectUrl("/login.html");
 //        // 自定义登录处理
         filters.put("authc", new MyFormAuthenticationFilter());
 //        // 自定义权限处理
@@ -95,11 +95,19 @@ public class ShiroConfig {
         map.put("/img/**","anon");
         map.put("/fonts/**","anon");
         map.put("favicon.ico","anon");
-        map.put("/index.html#/login","anon");
-        map.put("/index.html","anon");
+        map.put("/","anon");
+//        map.put("/index.html/**","anon");
         map.put("/shiro/login","anon");
         map.put("/shiro/register","anon");
-        map.put("/**","anon");
+
+        //放行孙明旭
+        map.put("/hostregister/**","anon");
+        map.put("/host2task/selectTaskByHostId","anon");
+        map.put("/host2task/updateById","anon");
+        map.put("/tasks/selectById","anon");
+        map.put("/host2task/finishById","anon");
+        //对所有用户验证
+        map.put("/**","authc");
 //        map.put("/login/**","anon");
 //        map.put("/shiro/login","anon");
 //        map.put("/register.html","anon");
@@ -152,12 +160,14 @@ public class ShiroConfig {
 ////        map.put("/index.html","roles[0]");
         //对所有用户认证
 //        map.put("/**","authc");
-        //登录
-        shiroFilterFactoryBean.setLoginUrl("/index.html/#/login");
-        //首
-        shiroFilterFactoryBean.setSuccessUrl("/index.html/#");
-        //错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/autherror.html");
+
+        //这里不在设置shiro的跳转
+//        //登录
+//        shiroFilterFactoryBean.setLoginUrl("/index.html/#/login");
+//        //首
+//        shiroFilterFactoryBean.setSuccessUrl("/index.html/#");
+//        //错误页面，认证不通过跳转
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/autherror.html");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
