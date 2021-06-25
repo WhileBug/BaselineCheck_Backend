@@ -34,6 +34,14 @@ public interface TasksMapper {
      */
     int selectForCount(@Param("name")String name);
 
+
+    /**
+     * 通过Name查询Id
+     *
+     * @param name 主键
+     * @return 实例对象
+     */
+    Integer selectIdByName(@Param("taskName") String taskName);
     /**
      * 通过实体作为筛选条件查询
      * 
