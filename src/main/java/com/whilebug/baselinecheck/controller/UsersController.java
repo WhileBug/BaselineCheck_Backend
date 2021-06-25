@@ -99,6 +99,18 @@ public class UsersController {
     public Map<String, Object> selectById(Integer id) {
         return this.usersServiceImpl.selectById(id);
     }
+
+    /**
+     * 通过用户名
+     *
+     * @param username 用户名
+     * @return 实例对象
+     */
+    @RequestMapping(value = "/selectByUsername", method = RequestMethod.GET)
+    @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
+    public Users selectByUsername(String username) {
+        return this.usersServiceImpl.getUser(username);
+    }
     
     /**
      * 通过主键更新单条数据
