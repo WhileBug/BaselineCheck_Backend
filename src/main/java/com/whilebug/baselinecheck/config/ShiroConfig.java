@@ -108,6 +108,12 @@ public class ShiroConfig {
         map.put("/logout","logout");
         //放行孙明旭
         map.put("/hostregister/**","anon");
+        map.put("/host2task/selectTaskByHostId","anon");
+        map.put("/host2task/updateById","anon");
+        map.put("/tasks/selectById","anon");
+        map.put("/host2task/finishById","anon");
+
+
         //放行post
         map.put("/users/insert","anon");
         map.put("/users/deleteById","anon");
