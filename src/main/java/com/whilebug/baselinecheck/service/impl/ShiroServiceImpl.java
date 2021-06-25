@@ -10,7 +10,8 @@ import java.util.Map;
 
 @Service
 public class ShiroServiceImpl {
-    public Map<String, Object> selectUser(String username, String password) {
+
+    public Map<String, Object> loginUser(String username, String password) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", 506);
         map.put("msg", "用户认证不成功");
@@ -41,6 +42,18 @@ public class ShiroServiceImpl {
                 System.out.println(ae.getMessage());
             }
         }
+        return map;
+    }
+
+    public Map<String, Object> logout() {
+        //在这里执行退出系统前需要清空的数据
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated()) {
+            subject.logout();
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);
+        map.put("msg", "成功退出");
         return map;
     }
 }
