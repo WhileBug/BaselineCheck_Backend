@@ -62,6 +62,14 @@ public class HostsServiceImpl {
         return map;
     }
 
+    public Map<String, Object> updateByMac(Hosts host) {
+        Map<String, Object> map = new HashMap<>();
+        // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+        map.put("code", 200);
+        map.put("msg", "查询成功");
+        map.put("obj", this.hostsMapper.updateByMac(host));
+        return map;
+    }
     /**
      * 查询分页数据
      *

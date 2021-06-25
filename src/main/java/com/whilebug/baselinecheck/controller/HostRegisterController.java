@@ -81,7 +81,7 @@ public class HostRegisterController {
         Map<String, Object> map = this.hostRegisterServiceImpl.getHostByMac(host.getHostMac());
         if (map != null) {
             if (map.get("code").equals(200)){
-                return this.hostsServiceImpl.updateById(host);
+                return this.hostsServiceImpl.updateByMac(host);
             }
         }
         return this.hostRegisterServiceImpl.getHostByMac(host.getHostMac());

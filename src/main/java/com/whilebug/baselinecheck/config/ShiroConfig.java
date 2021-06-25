@@ -93,63 +93,69 @@ public class ShiroConfig {
         map.put("/js/**","anon");
         map.put("/css/**","anon");
         map.put("/img/**","anon");
-        map.put("/login.html","anon");
-        map.put("/login/**","anon");
+        map.put("/fonts/**","anon");
+        map.put("favicon.ico","anon");
+        map.put("/index.html#/login","anon");
+        map.put("/index.html","anon");
         map.put("/shiro/login","anon");
-        map.put("/register.html","anon");
         map.put("/shiro/register","anon");
-        map.put("/autherror.html","anon");
-        map.put("/jquery/**","anon");
-        map.put("/layui/**","anon");
-        map.put("/swagger-resources/**","anon");
-        map.put("/webjars/**","anon");
-        map.put("/v2/**","anon");
-        map.put("/swagger-ui.html/**","anon");
-        map.put("/logout","logout");
-        //放行孙明旭
-        map.put("/hostregister/**","anon");
-        map.put("/host2task/selectTaskByHostId","anon");
-        map.put("/host2task/updateById","anon");
-        map.put("/tasks/selectById","anon");
-        map.put("/host2task/finishById","anon");
-
-        //陈斌
-        map.put("/getCheckResult","anon");
-        map.put("/getAnalysisResult","anon");
-
-        //放行post
-        map.put("/users/insert","anon");
-        map.put("/users/deleteById","anon");
-        map.put("/users/updateById","anon");
-
-        map.put("/tasks/insert","anon");
-        map.put("/tasks/deleteById","anon");
-        map.put("/tasks/updateById","anon");
-
-        map.put("/hosts/insert","anon");
-        map.put("/hosts/deleteById","anon");
-        map.put("/hosts/updateById","anon");
-
-        map.put("/departments/insert","anon");
-        map.put("/departments/deleteById","anon");
-        map.put("/departments/updateById","anon");
-
-        map.put("/host2task/insert","anon");
-        map.put("/host2task/deleteById","anon");
-        map.put("/host2task/updateById","anon");
-        map.put("/host2task/finishById","anon");
-
-
-        map.put("/admin.html","roles[1]");
-//        map.put("/user.html","roles[2]");
-        map.put("/list.html","roles[3]");
-        map.put("/index.html","roles[0]");
+        map.put("/**","anon");
+//        map.put("/login/**","anon");
+//        map.put("/shiro/login","anon");
+//        map.put("/register.html","anon");
+//        map.put("/shiro/register","anon");
+//        map.put("/autherror.html","anon");
+//        map.put("/jquery/**","anon");
+//        map.put("/layui/**","anon");
+//        map.put("/swagger-resources/**","anon");
+//        map.put("/webjars/**","anon");
+//        map.put("/v2/**","anon");
+//        map.put("/swagger-ui.html/**","anon");
+//        map.put("/logout","logout");
+//        //放行孙明旭
+//        map.put("/hostregister/**","anon");
+//        map.put("/host2task/selectTaskByHostId","anon");
+//        map.put("/host2task/updateById","anon");
+//        map.put("/tasks/selectById","anon");
+//        map.put("/host2task/finishById","anon");
+//
+//        map.put("/getCheckResult","anon");
+////        map.put("/getAnalysisResult","anon");
+////
+//        //放行post
+////        map.put("/users/insert","anon");
+////        map.put("/users/deleteById","anon");
+////        map.put("/users/updateById","anon");
+////
+////        map.put("/tasks/insert","anon");
+////        map.put("/tasks/deleteById","anon");
+////        map.put("/tasks/updateById","anon");
+////
+////        map.put("/hosts/insert","anon");
+////        map.put("/hosts/deleteById","anon");
+////        map.put("/hosts/updateById","anon");
+////
+////        map.put("/departments/insert","anon");
+////        map.put("/departments/deleteById","anon");
+////        map.put("/departments/updateById","anon");
+////
+////        map.put("/host2task/insert","anon");
+////        map.put("/host2task/deleteById","anon");
+////        map.put("/host2task/updateById","anon");
+////        map.put("/host2task/finishById","anon");        //陈斌
+//
+//
+//
+//        map.put("/admin.html","roles[1]");
+////        map.put("/user.html","roles[2]");
+//        map.put("/list.html","roles[3]");
+////        map.put("/index.html","roles[0]");
         //对所有用户认证
-        map.put("/**","authc");
+//        map.put("/**","authc");
         //登录
-        shiroFilterFactoryBean.setLoginUrl("/login.html");
-        //首页
-        shiroFilterFactoryBean.setSuccessUrl("/index.html");
+        shiroFilterFactoryBean.setLoginUrl("/index.html/#/login");
+        //首
+        shiroFilterFactoryBean.setSuccessUrl("/index.html/#");
         //错误页面，认证不通过跳转
         shiroFilterFactoryBean.setUnauthorizedUrl("/autherror.html");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
