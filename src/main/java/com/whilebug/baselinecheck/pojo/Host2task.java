@@ -1,6 +1,8 @@
 package com.whilebug.baselinecheck.pojo;
 
 import java.io.Serializable;
+import java.util.Map;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

@@ -11,6 +11,9 @@ import java.io.FileReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 任务task与主机host之间的对应关系(Host2task)表服务实现类
@@ -173,26 +176,50 @@ public class Host2taskServiceImpl {
     public Map<String, Object> finishById(Host2task host2task) {
         this.host2taskMapper.finishById(host2task);
 
-        String analysisResultStr = host2task.getAnalysisResult();
+        String analysisResult = host2task.getAnalysisResult();
         //String path = "com/whilebug/baselinecheck/jsonDatabase/host_"+Integer.toString(host2task.getHostId())+"_task_"+Integer.toString(host2task.getTaskId())+".json";
         //URL projectAddr = ClassLoader.getSystemResource("");
         //path = projectAddr.toString().substring(6)+path;
         //System.out.println(path);
+        //String analysisResultStr = analysisResult.toString();
         String path = "jsonDatabase/host_"+Integer.toString(host2task.getHostId())+"_task_"+Integer.toString(host2task.getTaskId())+".json";
         File file = new File(path);
+        System.out.println(analysisResult);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(analysisResultStr.getBytes());
+            fileOutputStream.write(analysisResult.getBytes());
             fileOutputStream.close();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        host2task.setAnalysisResult("");// 将host2task的analysisResult属性重置，防止查询数据库的时候analysisResult太大占网络空间
+        host2task.setAnalysisResult(null);// 将host2task的analysisResult属性重置，防止查询数据库的时候analysisResult太大占网络空间
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("msg", "更新成功");
         return map;
+    }
+
+    /*
+     * unicode编码转中文
+     */
+    public static String decodeUnicode(final String dataStr) {
+        int start = 0;
+        int end = 0;
+        final StringBuffer buffer = new StringBuffer();
+        while (start > -1) {
+            end = dataStr.indexOf("\\u", start + 2);
+            String charStr = "";
+            if (end == -1) {
+                charStr = dataStr.substring(start + 2, dataStr.length());
+            } else {
+                charStr = dataStr.substring(start + 2, end);
+            }
+            char letter = (char) Integer.parseInt(charStr, 16); // 16进制parse整形字符串。
+            buffer.append(new Character(letter).toString());
+            start = end;
+        }
+        return buffer.toString();
     }
 
     /**
@@ -211,7 +238,7 @@ public class Host2taskServiceImpl {
             String str;
             String analysisResult=null;
             while ((str = in.readLine()) != null) {
-                System.out.println(str);
+                //System.out.println(str);
                 if (analysisResult==null){
                     analysisResult=str;
                 }else {
@@ -221,6 +248,9 @@ public class Host2taskServiceImpl {
             map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新成功");
             map.put("analysisResult", analysisResult);
+            String analysisResultStr = analysisResult.toString();
+            Map analysisResultMap = JSON.parseObject(analysisResultStr);
+            System.out.println(analysisResultMap);
         }catch (Exception e){
             map.put("code", 201);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新失败");
