@@ -113,6 +113,9 @@ public class ShiroConfig {
         map.put("/tasks/selectById","anon");
         map.put("/host2task/finishById","anon");
 
+        //陈斌
+        map.put("/getCheckResult","anon");
+        map.put("/getAnalysisResult","anon");
 
         //放行post
         map.put("/users/insert","anon");
