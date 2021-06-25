@@ -6,7 +6,6 @@ import com.whilebug.baselinecheck.mapper.Host2taskMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.*;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -270,6 +269,24 @@ public class Host2taskServiceImpl {
         return map;
     }
 
+    public Map<String, Object> getAnalysis(Map checkResult){
+        Map baselineCheckResult = (Map) checkResult.get("baselineCheck");
+        System.out.println(baselineCheckResult);
+        //Integer totalNum = Integer.parseInt((String) baselineCheckResult.get("核查总条目数"));
+        //Integer wrongNum = Integer.parseInt((String) baselineCheckResult.get("不合格条目数"));
+        //Integer rightNum = Integer.parseInt((String) baselineCheckResult.get("合格条目数"));
+        //Integer score = (Integer) baselineCheckResult.get("得分");
+        String dangerLevel = (String) baselineCheckResult.get("危险等级评级");
+        //System.out.println(checkResult);
+        Map<String, Object> map = new HashMap<>();
+        map.put("核查总条目数", baselineCheckResult.get("核查总条目数"));
+        map.put("不合格条目数", baselineCheckResult.get("不合格条目数"));
+        map.put("合格条目数", baselineCheckResult.get("合格条目数"));
+        map.put("得分", baselineCheckResult.get("得分"));
+        map.put("危险等级评级", dangerLevel);
+        System.out.println(map);
+        return map;
+    }
 
     public Map<String, Object> analyse(Map checkResult){
         Integer rightNum = 0;
@@ -297,8 +314,6 @@ public class Host2taskServiceImpl {
 
 
         Map<String, Object> map = new HashMap<>();
-        map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
-        map.put("msg", "更新成功");
         map.put("analysisResult", analysisResult);
         return map;
     }
@@ -328,7 +343,7 @@ public class Host2taskServiceImpl {
             map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新成功");
             Map checkResultMap = JSON.parseObject(checkResult);
-            Map analysisResultMap = analyse(checkResultMap);
+            Map analysisResultMap = getAnalysis(checkResultMap);
             map.put("checkResult", analysisResultMap);
         }catch (Exception e){
             map.put("code", 201);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
