@@ -28,6 +28,14 @@ public interface HostsMapper {
     Hosts selectById(@Param("id") Integer id);
 
     /**
+     * 通过IP查询单条数据
+     *
+     * @param id 主键
+     * @return 实例对象
+     */
+    Hosts selectByMac(@Param("mac") String Mac);
+
+    /**
      * 根据模糊条件查询总个数
      *
      * @return 返回查询到的总个数

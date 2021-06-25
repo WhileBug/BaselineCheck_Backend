@@ -4,6 +4,7 @@ import com.whilebug.baselinecheck.mapper.HostsMapper;
 import com.whilebug.baselinecheck.mapper.UsersMapper;
 import com.whilebug.baselinecheck.pojo.Hosts;
 import com.whilebug.baselinecheck.pojo.Users;
+import org.apache.catalina.Host;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -116,6 +117,23 @@ public class HostRegisterServiceImpl {
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
         map.put("PID", userpid.getPID());
+        return map;
+    }
+
+    /**
+     * 根据据ip得到host的值
+     */
+    public Map<String, Object> getHostByMac(String Mac){
+        Hosts hosts = hostsMapper.selectByMac(Mac);
+        if (hosts == null) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("code", 10);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+            map.put("status", "添加失败,请检查配置信息是否正确");
+            return map;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+        map.put("status", "添加成功");
         return map;
     }
 }
