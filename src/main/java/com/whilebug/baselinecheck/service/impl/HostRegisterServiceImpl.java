@@ -121,7 +121,7 @@ public class HostRegisterServiceImpl {
     }
 
     /**
-     * 根据据ip得到host的值
+     * 根据据ip得到Mac的值
      */
     public Map<String, Object> getHostByMac(String Mac){
         Hosts hosts = hostsMapper.selectByMac(Mac);

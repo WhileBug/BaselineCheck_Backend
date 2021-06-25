@@ -4,6 +4,7 @@ package com.whilebug.baselinecheck.controller;
 import com.whilebug.baselinecheck.pojo.Hosts;
 import com.whilebug.baselinecheck.pojo.Users;
 import com.whilebug.baselinecheck.service.impl.HostRegisterServiceImpl;
+import com.whilebug.baselinecheck.service.impl.HostsServiceImpl;
 import com.whilebug.baselinecheck.service.impl.UsersServiceImpl;
 import io.swagger.annotations.*;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -11,6 +12,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,7 +39,8 @@ public class HostRegisterController {
      */
     @Resource
     private HostRegisterServiceImpl hostRegisterServiceImpl;
-
+    @Resource
+    private HostsServiceImpl hostsServiceImpl;
 
     /**
      * GUI登录接口
@@ -75,7 +78,12 @@ public class HostRegisterController {
     @RequestMapping(value = "/successornot", method = RequestMethod.POST)
     @ApiOperation(value = "web判断设备是否注册成功",notes = "判断设备是否注册成功",httpMethod = "POST")
     public Map<String, Object> successOrNot(@RequestBody @ApiParam(name = "host",value = "pojo模型",required = true) Hosts host) {
-
+        Map<String, Object> map = this.hostRegisterServiceImpl.getHostByMac(host.getHostMac());
+        if (map != null) {
+            if (map.get("code").equals(200)){
+                return this.hostsServiceImpl.updateById(host);
+            }
+        }
         return this.hostRegisterServiceImpl.getHostByMac(host.getHostMac());
     }
 
