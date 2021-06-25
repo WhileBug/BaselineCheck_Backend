@@ -63,8 +63,9 @@
     <update id="updateById" parameterType="com.whilebug.baselinecheck.pojo.Host2task">
         update baseline.host2task
         <set>
+            status=#{status}
         </set>
-        where task_id = #{taskId}
+        where task_id = #{taskId} and host_id= #{hostId}
     </update>
 
     <!--通过主键删除-->
