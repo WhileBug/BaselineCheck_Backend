@@ -1,6 +1,7 @@
 package com.whilebug.baselinecheck.service;
 
 import com.whilebug.baselinecheck.pojo.Host2task;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -26,6 +27,8 @@ public interface Host2taskService {
      * @return  返回所有数据
      */
     Map<String, Object> selectAll();
+
+
 
     /**
      * 通过ID查询单条数据
