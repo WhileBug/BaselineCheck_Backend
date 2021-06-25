@@ -97,4 +97,12 @@
         </set>
         where task_id = #{taskId} and host_id = #{hostId}
     </update>
+
+    <!--通过taskId查询hostId-->
+    <select id="selectHostByTaskId" resultType="int">
+        select
+        host_id
+        from baseline.host2task
+        where task_id = #{taskId}
+    </select>
 </mapper>

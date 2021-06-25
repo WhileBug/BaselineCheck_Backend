@@ -176,11 +176,12 @@ public class Host2taskServiceImpl {
         this.host2taskMapper.finishById(host2task);
 
         JSONObject checkResult = host2task.getCheckResult();
-        String path = "jsonDatabase/host_"+Integer.toString(host2task.getHostId())+"_task_"+Integer.toString(host2task.getTaskId())+".json";
+        Integer taskId = host2task.getTaskId();
+        String path = "jsonDatabase/host_"+Integer.toString(this.host2taskMapper.selectHostByTaskId(taskId))+"_task_"+Integer.toString(host2task.getTaskId())+".json";
         //File file = new File(path);
         //System.out.println(checkResult);
         String checkResultStr = JSON.toJSONString(checkResult, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue, SerializerFeature.WriteDateUseDateFormat);
-        System.out.println(checkResultStr);
+        //System.out.println(checkResultStr);
         try {
             File file = new File(path);
             if (!file.getParentFile().exists()) { // 如果父目录不存在，创建父目录
@@ -235,12 +236,12 @@ public class Host2taskServiceImpl {
     /**
      * 通过hostId和taskId查询某次检查的检查结果
      *
-     * @param hostId 主机的编号 taskId 任务的编号
+     * @param taskId 任务的编号
      * @return 实例对象
      */
-    public Map<String, Object> getCheckResult(String hostId, String taskId) {
+    public Map<String, Object> getCheckResult(String taskId) {
 
-        String path = "jsonDatabase/host_"+hostId+"_task_"+taskId+".json";
+        String path = "jsonDatabase/host_"+this.host2taskMapper.selectHostByTaskId(Integer.parseInt(taskId))+"_task_"+taskId+".json";
         File file = new File(path);
         Map<String, Object> map = new HashMap<>();
         try {
@@ -275,9 +276,9 @@ public class Host2taskServiceImpl {
         Integer wrongNum = 0;
         Map<String, Object> analysisResult = new HashMap<>();
         List<Map> baselineCheckResult = (List<Map>) checkResult.get("baselineCheck");
-        System.out.println(baselineCheckResult);
+        //System.out.println(baselineCheckResult);
         for(Map m:baselineCheckResult){
-            System.out.println(m.get("检查结果"));
+            //System.out.println(m.get("检查结果"));
             if (m.get("检查结果").equals("合格")){
                 rightNum += 1;
             }
@@ -304,12 +305,12 @@ public class Host2taskServiceImpl {
     /**
      * 通过hostId和taskId查询某次检查的分析结果
      *
-     * @param hostId 主机的编号 taskId 任务的编号
+     * @param taskId 任务的编号
      * @return 实例对象
      */
-    public Map<String, Object> getAnalysisResult(String hostId, String taskId) {
+    public Map<String, Object> getAnalysisResult(String taskId) {
 
-        String path = "jsonDatabase/host_"+hostId+"_task_"+taskId+".json";
+        String path = "jsonDatabase/host_"+this.host2taskMapper.selectHostByTaskId(Integer.parseInt(taskId))+"_task_"+taskId+".json";
         File file = new File(path);
         Map<String, Object> map = new HashMap<>();
         try {
