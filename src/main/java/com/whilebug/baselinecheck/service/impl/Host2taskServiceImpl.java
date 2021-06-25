@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
@@ -232,7 +233,7 @@ public class Host2taskServiceImpl {
     }
 
     /**
-     * 通过hostId和taskId查询某次检查的分析结果
+     * 通过hostId和taskId查询某次检查的检查结果
      *
      * @param hostId 主机的编号 taskId 任务的编号
      * @return 实例对象
@@ -258,6 +259,76 @@ public class Host2taskServiceImpl {
             map.put("msg", "更新成功");
             Map checkResultMap = JSON.parseObject(checkResult);
             map.put("checkResult", checkResultMap);
+        }catch (Exception e){
+            map.put("code", 201);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+            map.put("msg", "更新失败");
+            e.printStackTrace();
+        }
+
+
+        return map;
+    }
+
+
+    public Map<String, Object> analyse(Map checkResult){
+        Integer rightNum = 0;
+        Integer wrongNum = 0;
+        Map<String, Object> analysisResult = new HashMap<>();
+        List<Map> baselineCheckResult = (List<Map>) checkResult.get("baselineCheck");
+        System.out.println(baselineCheckResult);
+        for(Map m:baselineCheckResult){
+            System.out.println(m.get("检查结果"));
+            if (m.get("检查结果").equals("合格")){
+                rightNum += 1;
+            }
+            else if (m.get("检查结果").equals("符合")){
+                rightNum += 1;
+            }
+            else if (m.get("检查结果").equals("不符合")){
+                wrongNum += 1;
+            }
+            else if (m.get("检查结果").equals("不合格")){
+                wrongNum += 1;
+            }
+        }
+        analysisResult.put("合格项目数",rightNum);
+        analysisResult.put("不合格项目数",wrongNum);
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+        map.put("msg", "更新成功");
+        map.put("analysisResult", analysisResult);
+        return map;
+    }
+    /**
+     * 通过hostId和taskId查询某次检查的分析结果
+     *
+     * @param hostId 主机的编号 taskId 任务的编号
+     * @return 实例对象
+     */
+    public Map<String, Object> getAnalysisResult(String hostId, String taskId) {
+
+        String path = "jsonDatabase/host_"+hostId+"_task_"+taskId+".json";
+        File file = new File(path);
+        Map<String, Object> map = new HashMap<>();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(path));
+            String str;
+            String checkResult=null;
+            while ((str = in.readLine()) != null) {
+                //System.out.println(str);
+                if (checkResult==null){
+                    checkResult=str;
+                }else {
+                    checkResult += str;
+                }
+            }
+            map.put("code", 200);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
+            map.put("msg", "更新成功");
+            Map checkResultMap = JSON.parseObject(checkResult);
+            Map analysisResultMap = analyse(checkResultMap);
+            map.put("checkResult", analysisResultMap);
         }catch (Exception e){
             map.put("code", 201);   // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败
             map.put("msg", "更新失败");
