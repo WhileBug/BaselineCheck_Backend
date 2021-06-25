@@ -57,7 +57,7 @@ public class HostRegisterController {
     }
 
     /**
-     * 设备注册接口
+     * 设备注册接口-GUI
      * @param  host 客户机实例
      * @return 用户对象id
      */
@@ -68,7 +68,16 @@ public class HostRegisterController {
         return this.hostRegisterServiceImpl.hostRegister(host);
     }
 
+    /**
+     * web页面判断是否注册成功
+     *
+     */
+    @RequestMapping(value = "/successornot", method = RequestMethod.POST)
+    @ApiOperation(value = "web判断设备是否注册成功",notes = "判断设备是否注册成功",httpMethod = "POST")
+    public Map<String, Object> successOrNot(@RequestBody @ApiParam(name = "host",value = "pojo模型",required = true) Hosts host) {
 
+        return this.hostRegisterServiceImpl.getHostByMac(host.getHostMac());
+    }
 
     /**
      * 获取用户唯一标识PID

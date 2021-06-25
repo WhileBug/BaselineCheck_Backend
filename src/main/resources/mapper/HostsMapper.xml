@@ -66,6 +66,14 @@
         from baseline.hosts
         where id = #{id}
     </select>
+
+    <!--查询单个-->
+    <select id="selectByMac" resultMap="HostsMap">
+        select
+        <include refid="Beas_Column_List"/>
+        from baseline.hosts
+        where host_ip = #{mac}
+    </select>
     
     <!--根据条件查询当前表的满足条件的个数-->
     <select id="selectForCount" resultType="int">
