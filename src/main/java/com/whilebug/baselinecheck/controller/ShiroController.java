@@ -5,14 +5,12 @@ import com.whilebug.baselinecheck.service.impl.UsersServiceImpl;
 import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -42,12 +40,12 @@ public class ShiroController {
             @ApiImplicitParam(name = "username",value = "用户名",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "password",value = "密码",paramType = "query",dataType = "String",required = true)
     })
-    public Map<String, Object> selectUser(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
+    public Map<String, Object> login(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
         System.out.println(request.getRequestURL());
         System.out.println(request.getLocalAddr());
         System.out.println(request.getRemoteAddr());
         System.out.println(request.getRequestURI());
-        return shiroService.selectUser(username, password);
+        return shiroService.loginUser(username, password);
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -59,6 +57,15 @@ public class ShiroController {
     public Map<String, Object> registerUser(@RequestParam String username, @RequestParam String password) {
         return userService.registerUser(username, md5(username, password));
     }
+
+
+    @RequiresAuthentication
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public Map<String, Object> logout() {
+        return this.shiroService.logout();
+    }
+
+
 
     // 注册时，进行shiro加密，返回加密后的结果，如果在加入shiro之前，存在用户密码不是此方式加密的，那么将无法登录
     // 使用用户名作为盐值
