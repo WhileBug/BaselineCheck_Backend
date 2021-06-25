@@ -16,6 +16,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class Hosts implements Serializable {
     private static final long serialVersionUID = -20796224218000932L;
     /**
+     * 用户唯一标识，验证码
+     */
+    @ApiModelProperty(name = "pid",notes = "用户唯一标识",dataType = "String",required = true)
+    private String pid;
+    /**
     * 主机host的主键host_id
     */
 	@ApiModelProperty(name = "id",notes = "主机host的主键host_id",dataType = "Integer",required = true)
@@ -71,7 +76,16 @@ public class Hosts implements Serializable {
 	@ApiModelProperty(name = "userId",notes = "主机host的拥有者id，user_id，同时是users数据表的主键user_id",dataType = "Integer",required = true)
     private Integer userId;
 
-        
+
+    public String getPID() {
+        return pid;
+    }
+
+    public void setPID(String PID) {
+        this.pid = PID;
+    }
+
+
     public Integer getId() {
         return id;
     }

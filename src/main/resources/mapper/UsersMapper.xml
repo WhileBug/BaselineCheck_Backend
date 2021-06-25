@@ -14,10 +14,11 @@
         <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
         <result property="userAuth" column="user_auth" jdbcType="INTEGER"/>
         <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="pid" column="PID" jdbcType="VARCHAR"/>
     </resultMap>
     
     <sql id="Beas_Column_List">
-        id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id        
+        id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id,pid
     </sql>
     <!--通过名字查询得到用户-->
     <select id="getUser" resultMap="UsersMap">
@@ -34,8 +35,8 @@
     <!--注册用户-->
 
     <insert id="registerUser" parameterType="com.whilebug.baselinecheck.pojo.Users">
-        insert into baseline.users(id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id)
-        values (#{id}, #{userPasswrod}, #{userName}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId})
+        insert into baseline.users(id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id,pid)
+        values (#{id}, #{userPasswrod}, #{userName}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId},#{pid})
     </insert>
 
     <!--查询所有主键和名称-->
@@ -73,6 +74,9 @@
             </if>
             <if test="departmentId != null">
                 department_id = #{departmentId},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
             </if>
         </where>
     </select>
@@ -112,8 +116,8 @@
 
     <!--新增所有列-->
     <insert id="insert" parameterType="com.whilebug.baselinecheck.pojo.Users">
-        insert into baseline.users(id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id)
-        values (#{id}, #{userPasswrod}, #{userName}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId})
+        insert into baseline.users(id, user_passwrod, user_name, user_status, user_phone, user_email, user_img_addr, last_login_time, register_time, user_auth, department_id,pid)
+        values (#{id}, #{userPasswrod}, #{userName}, #{userStatus}, #{userPhone}, #{userEmail}, #{userImgAddr}, #{lastLoginTime}, #{registerTime}, #{userAuth}, #{departmentId},#{pid})
     </insert>
 
     <!--通过主键修改数据-->
@@ -149,6 +153,9 @@
             </if>
             <if test="departmentId != null">
                 department_id = #{departmentId},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
             </if>
         </set>
         where id = #{id}

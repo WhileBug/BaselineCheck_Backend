@@ -21,7 +21,7 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-//@Configuration
+@Configuration
 public class ShiroConfig {
     //将自己的验证方式加入容器
     @Bean
