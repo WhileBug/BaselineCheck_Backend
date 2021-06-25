@@ -106,6 +106,31 @@ public class ShiroConfig {
         map.put("/v2/**","anon");
         map.put("/swagger-ui.html/**","anon");
         map.put("/logout","logout");
+        //放行孙明旭
+        map.put("/hostregister/**","anon");
+        //放行post
+        map.put("/users/insert","anon");
+        map.put("/users/deleteById","anon");
+        map.put("/users/updateById","anon");
+
+        map.put("/tasks/insert","anon");
+        map.put("/tasks/deleteById","anon");
+        map.put("/tasks/updateById","anon");
+
+        map.put("/hosts/insert","anon");
+        map.put("/hosts/deleteById","anon");
+        map.put("/hosts/updateById","anon");
+
+        map.put("/departments/insert","anon");
+        map.put("/departments/deleteById","anon");
+        map.put("/departments/updateById","anon");
+
+        map.put("/host2task/insert","anon");
+        map.put("/host2task/deleteById","anon");
+        map.put("/host2task/updateById","anon");
+        map.put("/host2task/finishById","anon");
+
+
         map.put("/admin.html","roles[1]");
 //        map.put("/user.html","roles[2]");
         map.put("/list.html","roles[3]");
