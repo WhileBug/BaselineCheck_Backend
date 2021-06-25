@@ -26,9 +26,7 @@
         <include refid="Beas_Column_List"/>
         from baseline.users
         <where>
-            <if test="username != null and username != ''">
                 user_name = #{username}
-            </if>
         </where>
     </select>
 

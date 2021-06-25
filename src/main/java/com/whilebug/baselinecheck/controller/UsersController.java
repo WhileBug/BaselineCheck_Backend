@@ -108,7 +108,7 @@ public class UsersController {
      */
     @RequestMapping(value = "/selectByUsername", method = RequestMethod.GET)
     @ApiOperation(value = "通过主键查询一个**的接口",notes = "通过主键查询一个**的接口",httpMethod = "GET")
-    public Users selectByUsername(String username) {
+    public Users selectByUsername(@RequestParam String username) {
         return this.usersServiceImpl.getUser(username);
     }
     
