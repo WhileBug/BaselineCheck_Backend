@@ -75,6 +75,14 @@ public interface HostsMapper {
     int updateById(Hosts hosts);
 
     /**
+     * 修改数据
+     *
+     * @param hosts 实例对象
+     * @return 影响行数
+     */
+    int updateByMac(Hosts hosts);
+
+    /**
      * 通过主键删除数据
      *
      * @param id 主键

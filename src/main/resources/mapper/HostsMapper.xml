@@ -72,7 +72,7 @@
         select
         <include refid="Beas_Column_List"/>
         from baseline.hosts
-        where host_ip = #{mac}
+        where host_mac = #{mac}
     </select>
     
     <!--根据条件查询当前表的满足条件的个数-->
@@ -149,6 +149,44 @@
             </if>
         </set>
         where id = #{id}
+    </update>
+
+    <!--通过主键修改数据-->
+    <update id="updateByMac" parameterType="com.whilebug.baselinecheck.pojo.Hosts">
+        update baseline.hosts
+        <set>
+            <if test="hostName != null and hostName != ''">
+                host_name = #{hostName},
+            </if>
+            <if test="hostIp != null and hostIp != ''">
+                host_ip = #{hostIp},
+            </if>
+            <if test="hostMac != null and hostMac != ''">
+                host_mac = #{hostMac},
+            </if>
+            <if test="hostUserName != null and hostUserName != ''">
+                host_user_name = #{hostUserName},
+            </if>
+            <if test="hostUserPassword != null and hostUserPassword != ''">
+                host_user_password = #{hostUserPassword},
+            </if>
+            <if test="hostUserPort != null and hostUserPort != ''">
+                host_user_port = #{hostUserPort},
+            </if>
+            <if test="hostUserProtocol != null and hostUserProtocol != ''">
+                host_user_protocol = #{hostUserProtocol},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+        </set>
+        where host_mac = #{hostMac}
     </update>
 
     <!--通过主键删除-->
