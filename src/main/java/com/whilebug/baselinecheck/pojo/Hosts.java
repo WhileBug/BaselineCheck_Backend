@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * 主机数据表(Hosts)实体类
  *
- * @author makejava
+ * @author 王沛然
  * @since 2021-06-23 16:54:30
  * @version 1.0
  */

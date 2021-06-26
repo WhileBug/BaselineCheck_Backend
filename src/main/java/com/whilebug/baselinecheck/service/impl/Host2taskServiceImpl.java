@@ -16,7 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * 任务task与主机host之间的对应关系(Host2task)表服务实现类
  *
- * @author makejava
+ * @author 王沛然
  * @since 2021-06-23 16:54:23
  * @version 1.0
  */

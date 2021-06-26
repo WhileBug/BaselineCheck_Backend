@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * 扫描任务数据表(Tasks)实体类
  *
- * @author makejava
+ * @author 王沛然
  * @since 2021-06-23 16:54:36
  * @version 1.0
  */

@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * 任务task与主机host之间的对应关系(Host2task)实体类
  *
- * @author makejava
+ * @author 王沛然
  * @since 2021-06-24 10:01:20
  * @version 1.0
  */
