@@ -8,6 +8,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+
+/**
+ * 退出登录 Filter
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 public class MyLogoutFilter extends LogoutFilter {
 
     @Override

@@ -14,11 +14,24 @@ import org.springframework.data.redis.core.RedisTemplate;
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 
+/**
+ * 用户Realm shiro验证用
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
+
 public class UserRealm extends AuthorizingRealm {
 
     @Resource
     private UsersServiceImpl userService;
 
+    /**
+     * 用户授权
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -42,6 +55,12 @@ public class UserRealm extends AuthorizingRealm {
         return info;
     }
 
+    /**
+     * 用户验证
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         Users user = null;

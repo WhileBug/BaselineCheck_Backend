@@ -12,6 +12,13 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 主机注册接口实现类
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 @Service
 public class HostRegisterServiceImpl {
 
@@ -23,6 +30,8 @@ public class HostRegisterServiceImpl {
 
     /**
      * 用户登录
+     * @param user
+     * @return
      */
     public Map<String, Object> loginUser(Users user){
         //从数据库中查数据
@@ -77,9 +86,10 @@ public class HostRegisterServiceImpl {
         return map;
     }
 
-
     /**
      * 主机注册
+     * @param hosts
+     * @return
      */
     public Map<String, Object> hostRegister(Hosts hosts){
         // UUID.randomUUID()  返回内容：asd21321-ewrewrew213213-123213zsad-123asdasd这样的形态
@@ -111,6 +121,8 @@ public class HostRegisterServiceImpl {
 
     /**
      * 返回用户PID,才能用
+     * @param user
+     * @return
      */
     public Map<String, Object> getPID(Users user){
         Users userpid = usersMapper.getUser(user.getUserName());
@@ -122,6 +134,8 @@ public class HostRegisterServiceImpl {
 
     /**
      * 根据据ip得到Mac的值
+     * @param Mac
+     * @return
      */
     public Map<String, Object> getHostByMac(String Mac){
         Hosts hosts = hostsMapper.selectByMac(Mac);

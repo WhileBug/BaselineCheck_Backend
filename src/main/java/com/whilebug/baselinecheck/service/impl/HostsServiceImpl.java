@@ -62,6 +62,12 @@ public class HostsServiceImpl {
         return map;
     }
 
+    /**
+     * 通过Mac更新主机信息
+     *
+     * @param host hosts对象
+     * @return map
+     */
     public Map<String, Object> updateByMac(Hosts host) {
         Map<String, Object> map = new HashMap<>();
         // 前端端分离时，前端人员会首先判断code值是否满足200，如果不是200，则提醒用户失败

@@ -21,6 +21,14 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
+/**
+ * shiroconfig配置项
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 @Configuration
 public class ShiroConfig {
     //将自己的验证方式加入容器

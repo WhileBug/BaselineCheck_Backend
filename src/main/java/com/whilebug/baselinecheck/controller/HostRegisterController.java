@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * 注册主机
  *
- * @author makejava
+ * @author 李奕轩
  * @since 2021-06-23 16:54:29
  * @version 1.0
  */
@@ -73,7 +73,8 @@ public class HostRegisterController {
 
     /**
      * web页面判断是否注册成功
-     *
+     * @param  host 客户机实例
+     * @return json 提示信息
      */
     @RequestMapping(value = "/successornot", method = RequestMethod.POST)
     @ApiOperation(value = "web判断设备是否注册成功",notes = "判断设备是否注册成功",httpMethod = "POST")

@@ -16,6 +16,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+
+
+/**
+ * shirocontroller
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 @RestController
 @RequestMapping(value = "/shiro")
 @Api(value = "用户表(shiro)管理",tags = "用户表(shiro)管理接口API")

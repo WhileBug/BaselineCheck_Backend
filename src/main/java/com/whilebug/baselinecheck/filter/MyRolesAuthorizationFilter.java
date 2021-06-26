@@ -11,6 +11,14 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * 用户权限管理 Filter
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 public class MyRolesAuthorizationFilter extends RolesAuthorizationFilter {
     @Override
     public boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {

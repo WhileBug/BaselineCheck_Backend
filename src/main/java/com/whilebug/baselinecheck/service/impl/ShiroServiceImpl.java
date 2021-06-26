@@ -11,6 +11,14 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * shiro服务实现类
+ *
+ * @author 李奕轩
+ * @since 2021-06-23 16:54:29
+ * @version 1.0
+ */
 @Service
 public class ShiroServiceImpl {
 
